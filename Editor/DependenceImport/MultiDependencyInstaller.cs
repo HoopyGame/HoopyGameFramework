@@ -110,7 +110,7 @@ public static class MultiDependencyInstaller
 
         if (manifestChanged)
         {
-            File.WriteAllText(manifestPath, manifestContent, Encoding.UTF8);
+            File.WriteAllText(manifestPath, manifestContent, new UTF8Encoding(false)); // 明确禁用 BOM
             Client.Resolve();
         }
     }
