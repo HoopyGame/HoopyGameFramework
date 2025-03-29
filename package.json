@@ -59,9 +59,6 @@
     }
   ],
   "dependencies": {
-    "com.unity.textmeshpro": "3.0.9",
-    "jp.hadashikick.vcontainer": "1.14.0",
-    "com.tuyoogame.yooasset": "2.3.6",
-    "com.cysharp.unitask": "2.5.10"
+    "com.unity.textmeshpro": "3.0.9"
   }
 }

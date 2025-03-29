@@ -30,7 +30,7 @@ public static class MultiDependencyInstaller
     // 配置你的所有依赖项
     private static readonly Dictionary<string, string> RequiredDependencies = new Dictionary<string, string>
     {
-        {"jp.hadashikick.vcontainer" , "1.14.0"}
+        {"com.tuyoogame.yooasset" , "2.3.6"}
     };
 
     // 配置需要的注册表
@@ -40,7 +40,7 @@ public static class MultiDependencyInstaller
         {
             name = "package.openupm.com",
             url = "https://package.openupm.com",
-            scopes = new[] { "jp.hadashikick.vcontainer", "com.tuyoogame.yooasset" }
+            scopes = new[] {"com.tuyoogame.yooasset" }
         },
     };
 
