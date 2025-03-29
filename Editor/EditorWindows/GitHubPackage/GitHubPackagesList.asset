@@ -1,0 +1,263 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac58281470532645ba09d1c9df79062, type: 3}
+  m_Name: GitHubPackagesList
+  m_EditorClassIdentifier: 
+  PackageList:
+  - name: 3D Game Shaders For Beginners
+    infomation: 3D Game Shaders For Beginners
+    URL: https://github.com/lettier/3d-game-shaders-for-beginners
+  - name: Animation-Instancing
+    infomation: This technique is designed to instanceCharacters(SkinnedMeshRender).
+    URL: https://github.com/Unity-Technologies/Animation-Instancing
+  - name: AssetGraph
+    infomation: Visual Workflow Automation Tool for Unity.
+    URL: https://github.com/Unity-Technologies/AssetGraph
+  - name: assimp
+    infomation: Open Asset Import Library is a library that loads various 3D file
+      formats into a shared, in-memory format
+    URL: https://github.com/assimp/assimp
+  - name: AutoLOD
+    infomation: Automatic LOD generation + scene optimization
+    URL: https://github.com/Unity-Technologies/AutoLOD
+  - name: behaviac
+    infomation: "behaviac\u662F\u6E38\u620FAI\u7684\u5F00\u53D1\u6846\u67B6\u7EC4\u4EF6\uFF0C\u4E5F\u662F\u6E38\u620F\u539F\u578B\u7684\u5FEB\u901F\u8BBE\u8BA1\u5DE5\u5177"
+    URL: https://github.com/Tencent/behaviac
+  - name: box2d
+    infomation: Box2D is a 2D physics engine for games
+    URL: https://github.com/erincatto/box2d
+  - name: BuildReportInspector
+    infomation: Editor script which implements an inspector for the BuildReport class
+    URL: https://github.com/Unity-Technologies/BuildReportInspector
+  - name: crest(Water)
+    infomation: A class-leading water system implemented in Unity
+    URL: https://github.com/wave-harmonic/crest
+  - name: DotNetty
+    infomation: "DotNetty project \u2013 a port of netty, event-driven asynchronous
+      network application framework"
+    URL: https://github.com/Azure/DotNetty
+  - name: Edgar-Unity
+    infomation: Unity Procedural Level Generator
+    URL: https://github.com/OndrejNepozitek/Edgar-Unity
+  - name: fungus
+    infomation: An easy to use Unity 3D library for creating illustrated Interactive
+      Fiction games and more.
+    URL: https://github.com/snozbot/fungus
+  - name: GAutomator
+    infomation: Automation for mobile games (Tencent)
+    URL: https://github.com/Tencent/GAutomator/tree/master
+  - name: Google Play Games plugin for Unity
+    infomation: Google Play Games plugin for Unity
+    URL: https://github.com/playgameservices/play-games-plugin-for-unity
+  - name: HigWaterSystem2
+    infomation: Hig Water System 2.0 is an advanced
+    URL: https://github.com/Higgins-PT/HigWaterSystem2
+  - name: HLODSystem
+    infomation: "\u9AD8\u6027\u80FD\u7684LOD\u7CFB\u7EDF"
+    URL: https://github.com/Unity-Technologies/HLODSystem
+  - name: Il2CppDumper
+    infomation: "Unity il2cpp\u9006\u5411\u5DE5\u7A0B"
+    URL: https://github.com/Perfare/Il2CppDumper
+  - name: KCPForC#
+    infomation: "KCP C#\u7248\u3002\u7EBF\u7A0B\u5B89\u5168\uFF0C\u8FD0\u884C\u65F6\u65E0alloc\uFF0C\u5BF9gc\u65E0\u538B\u529B."
+    URL: https://github.com/KumoKyaku/kcp
+  - name: Litjson
+    infomation: JSON library for the .Net framework
+    URL: https://github.com/LitJSON/litjson
+  - name: luban
+    infomation: "luban\u662F\u4E00\u4E2A\u5F3A\u5927\u3001\u6613\u7528\u3001\u4F18\u96C5\u3001\u7A33\u5B9A\u7684\u6E38\u620F\u914D\u7F6E\u89E3\u51B3\u65B9\u6848"
+    URL: https://github.com/focus-creative-games/luban
+  - name: MediaPipeUnityPlugin
+    infomation: Unity plugin to run MediaPipe
+    URL: https://github.com/homuler/MediaPipeUnityPlugin
+  - name: MessagePipe
+    infomation: High performance in-memory/distributed messaging pipeline for .NET
+      and Unity.
+    URL: https://github.com/Cysharp/MessagePipe?tab=readme-ov-file#unity
+  - name: minigame-unity-webgl-transform
+    infomation: Wechat Mini Game Unity engine adapter documents.(WX)
+    URL: https://github.com/wechat-miniprogram/minigame-unity-webgl-transform
+  - name: ml-agents
+    infomation: The Unity Machine Learning Agents Toolkit
+    URL: https://github.com/Unity-Technologies/ml-agents
+  - name: mono
+    infomation: This is Unity Technologies fork of the open source mono project.
+    URL: https://github.com/Unity-Technologies/mono
+  - name: NAudio
+    infomation: NAudio is an open source .NET audio library written by Mark Heath
+    URL: https://github.com/naudio/NAudio
+  - name: nebukam.orca
+    infomation: "ORCA / RVO2 Implementation for Unity \u2014 Multithreaded using
+      the job system."
+    URL: https://github.com/Nebukam/com.nebukam.orca
+  - name: Nino
+    infomation: Ultimate high-performance binary serialization library for C#.
+    URL: https://github.com/JasonXuDeveloper/Nino
+  - name: OverdrawForURP
+    infomation: Scene Overdraw in Universal Render Pipeline.
+    URL: https://github.com/ina-amagami/OverdrawForURP
+  - name: ParrelSync
+    infomation: (Unity3D) Test multiplayer without building
+    URL: https://github.com/VeriorPies/ParrelSync
+  - name: Project Auditor
+    infomation: "Project Auditor is an experimental static analysis tool for Unity
+      Projects.(\u62A5\u544A\u5206\u6790)"
+    URL: https://github.com/Unity-Technologies/ProjectAuditor
+  - name: protobuf
+    infomation: Protocol Buffers - Google's data interchange format
+    URL: https://github.com/protocolbuffers/protobuf
+  - name: Runtime Inspector & Hierarchy for Unity 3D
+    infomation: Runtime Inspector and Hierarchy solution for Unity for debugging
+      and runtime editing purposes
+    URL: https://github.com/yasirkula/UnityRuntimeInspector
+  - name: SoftMaskForUGUI
+    infomation: "\u8F6F\u906E\u7F69"
+    URL: https://github.com/mob-sakai/SoftMaskForUGUI
+  - name: Spine Runtimes
+    infomation: 2D skeletal animation runtimes for Spine.
+    URL: https://github.com/EsotericSoftware/spine-runtimes
+  - name: SpriteSlicer
+    infomation: Tool to export Unity sprite sheet slices as individual images
+    URL: https://github.com/fadookie/SpriteSlicer
+  - name: SuperSocket
+    infomation: SuperSocket is a light weight, cross platform and extensible socket
+      server application framework.
+    URL: https://github.com/kerryjiang/SuperSocket
+  - name: TouchScript
+    infomation: 'Complete multi-touch solution for Unity: iOS, Android, Windows,
+      TUIO.'
+    URL: https://github.com/TouchScript/TouchScript
+  - name: Ultimate 2D Controller
+    infomation: A great starting point for your 2D controller. Making use of all
+      the hidden tricks like coyote, buffered actions, speedy apex, anti grav apex,
+      etc
+    URL: https://github.com/Matthew-J-Spencer/Ultimate-2D-Controller
+  - name: UniRx
+    infomation: Reactive Extensions for Unity
+    URL: https://github.com/neuecc/UniRx
+  - name: UniTask
+    infomation: Provides an efficient allocation free async/await integration for
+      Unity.
+    URL: https://github.com/Cysharp/UniTask
+  - name: UnityBezierSolution
+    infomation: About A bezier spline solution for Unity 3D with some utility functions
+    URL: https://github.com/yasirkula/UnityBezierSolution
+  - name: UnityChanToonShaderVer2_Project
+    infomation: "UnityChanToonShaderVer2 Project(\u5361\u901A)"
+    URL: https://github.com/unity3d-jp/UnityChanToonShaderVer2_Project
+  - name: UnityGLTF
+    infomation: Runtime glTF 2.0 Loader for Unity3D
+    URL: https://github.com/KhronosGroup/UnityGLTF
+  - name: UnityHFSM
+    infomation: "A simple yet powerful class-based hierarchical finite state machine
+      for Unity(\u9AD8\u7EA7\u5206\u5C42\u6709\u9650\u72B6\u6001\u673A)"
+    URL: https://github.com/Inspiaaa/UnityHFSM
+  - name: UnityNativeShare
+    infomation: A Unity plugin to natively share files (images, videos, documents,
+      etc.) and/or plain text on Android & iOS
+    URL: https://github.com/yasirkula/UnityNativeShare
+  - name: UnityPlayableGraphMonitorTool
+    infomation: A tool for monitoring the PlayableGraph in real-time within the Unity
+      Editor.
+    URL: https://github.com/SolarianZ/UnityPlayableGraphMonitorTool/tree/main
+  - name: UnityStandaloneFileBrowser
+    infomation: A native file browser for unity standalone platforms
+    URL: https://github.com/gkngkc/UnityStandaloneFileBrowser
+  - name: UnityTimer
+    infomation: Powerful and convenient library for running actions after a delay
+      in Unity3D.
+    URL: https://github.com/akbiggs/UnityTimer
+  - name: UnityURPToonLitShaderExample
+    infomation: "A very simple toon lit shader example(\u5361\u901A)"
+    URL: https://github.com/ColinLeung-NiloCat/UnityURPToonLitShaderExample
+  - name: Unity-Utils
+    infomation: Extension Methods and Utils for Unity Game Dev
+    URL: https://github.com/adammyhre/Unity-Utils/tree/master
+  - name: UnityWebSocket
+    infomation: ' The Best Unity WebSocket Plugin for All Platforms.'
+    URL: https://github.com/psygames/UnityWebSocket
+  - name: VContainer
+    infomation: The extra fast DI (Dependency Injection) library running on Unity
+      Game Engine.
+    URL: https://github.com/hadashiA/VContainer
+  - name: WebGLInput
+    infomation: IME for Unity WebGL
+    URL: https://github.com/kou-yeung/WebGLInput
+  - name: XCharts
+    infomation: "A charting and data visualization library for Unity. Unity\u6570\u636E\u53EF\u89C6\u5316\u56FE\u8868\u63D2\u4EF6\u3002"
+    URL: https://github.com/XCharts-Team/XCharts
+  - name: YamlDotNet
+    infomation: YamlDotNet is a .NET library for YAML
+    URL: https://github.com/aaubry/YamlDotNet
+  - name: YooAsset
+    infomation: unity3d resources management system.
+    URL: https://github.com/tuyoogame/YooAsset
+  - name: SharpZipLib
+    infomation: a Zip, GZip, Tar and BZip2 library written entirely in C#
+    URL: https://github.com/icsharpcode/SharpZipLib
+  - name: Telepathy
+    infomation: Simple, message based, MMO Scale TCP networking in C#. And no magic.
+    URL: https://github.com/MirrorNetworking/Telepathy/tree/master
+  - name: TextLift
+    infomation: "\u514D\u8D39\u5F00\u6E90\u7684\u53EF\u7F16\u7A0B\u6269\u5C55\u7684\u652F\u6301TextMeshProUGUI\u7684\u5B57\u4F53\u7279\u6548\u6548\u679C."
+    URL: https://flowus.cn/enjoygameclub/share/fa2ac259-3498-4282-8200-3caeef47caef
+  Documents:
+  - name: GameDevMind
+    infomation: "\u6700\u5168\u9762\u7684\u6E38\u620F\u5F00\u53D1\u6280\u672F\u56FE\u8C31\u3002"
+    URL: https://github.com/gonglei007/GameDevMind/tree/main?tab=readme-ov-file
+  - name: cinemachine_doc_Chinese
+    infomation: "\u8FD9\u4E2A\u4ED3\u5E93\u662F\u5173\u4E8EUnity\u5B98\u65B9package:
+      Cinemachine\u7684\u6280\u672F\u6587\u6863\u4E2D\u6587\u7FFB\u8BD1\u3002"
+    URL: https://github.com/wcai49/cinemachine_doc_Chinese
+  - name: awesome-gameserver-cn
+    infomation: "\u4E2D\u6587\u6E38\u620F\u670D\u52A1\u5668\u8D44\u6E90\u5927\u5168"
+    URL: https://github.com/hstcscolor/awesome-gameserver-cn
+  - name: funNLP
+    infomation: "NLP\u6C11\u5DE5\u7684\u4E50\u56ED: \u51E0\u4E4E\u6700\u5168\u7684\u4E2D\u6587NLP\u8D44\u6E90\u5E93"
+    URL: https://github.com/fighting41love/funNLP
+  - name: Unity3DTraining
+    infomation: "\u3010Unity\u6742\u8D27\u94FA\u3011unity\u5927\u6742\u70E9~"
+    URL: https://github.com/XINCGer/Unity3DTraining
+  Samples:
+  - name: ECSSample
+    infomation: "ECS\u5B98\u65B9\u793A\u4F8B"
+    URL: https://github.com/Unity-Technologies/EntityComponentSystemSamples
+  - name: Post-Processing-Scan
+    infomation: "A 3D scan/sonar-like post-processing effect for Unity.(\u58F0\u5450\u7279\u6548)"
+    URL: https://github.com/MirzaBeig/Post-Processing-Scan
+  - name: Render-Crowd-Of-Animated-Characters
+    infomation: Using GPU to implement large-amount animation characters rendering.
+    URL: https://github.com/chenjd/Render-Crowd-Of-Animated-Characters
+  - name: UnityURP-MobileDrawMeshInstancedIndirectExample
+    infomation: Example project to draw 1million grass instances on mobile
+    URL: https://github.com/ColinLeung-NiloCat/UnityURP-MobileDrawMeshInstancedIndirectExample
+  - name: ReGoap
+    infomation: Generic C# GOAP (Goal Oriented Action Planning) library with Unity3d
+      examples
+    URL: https://github.com/luxkun/ReGoap
+  - name: tf-lite-unity-sample
+    infomation: TensorFlow Lite for Unity Samples
+    URL: https://github.com/asus4/tf-lite-unity-sample
+  - name: Homing-Missile
+    infomation: "\u5236\u5BFC\u5BFC\u5F39"
+    URL: https://github.com/Matthew-J-Spencer/Homing-Missile
+  - name: AnimationRigging-AdvancedSetups
+    infomation: Distributable samples demonstrating advanced setups and use cases
+      for Unity's Animation Rigging package
+    URL: https://github.com/ciro-unity/AnimationRigging-AdvancedSetups
+  - name: TeaDemo-Keyboard-CurveAnim-Effect
+    infomation: "\u57FA\u4E8E Unity \u5B9E\u73B0\u7684\u6309\u952E\u4EA4\u4E92\u52A8\u6548\u6F14\u793A"
+    URL: https://github.com/i000Tea/TeaDemo-Keyboard-CurveAnim-Effect
+  - name: Supabase
+    infomation: The open source Firebase alternative. Supabase gives you a dedicated
+      Postgres database to build your web, mobile, and AI applications.
+    URL: https://github.com/supabase/supabase

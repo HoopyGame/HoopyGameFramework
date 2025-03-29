@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PresetManager
+  m_TargetType:
+    m_NativeTypeID: 1386491679
+    m_ManagedTypePPtr: {fileID: 0}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[0].first.m_NativeTypeID
+    value: 114
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[0].first.m_ManagedTypePPtr
+    value: 
+    objectReference: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[0].first.m_ManagedTypeFallback
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[0].second.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[0].second.Array.data[0].m_Preset
+    value: 
+    objectReference: {fileID: 2655988077585873504, guid: 70de4e5cb7405c449a0e74f5e99d3865,
+      type: 2}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[0].second.Array.data[0].m_Filter
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[1].first.m_NativeTypeID
+    value: 114
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[1].first.m_ManagedTypePPtr
+    value: 
+    objectReference: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[1].first.m_ManagedTypeFallback
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[1].second.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[1].second.Array.data[0].m_Preset
+    value: 
+    objectReference: {fileID: 2655988077585873504, guid: 88c7d6ef2442aac4db51ebf976cc3a2f,
+      type: 2}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[1].second.Array.data[0].m_Filter
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[2].first.m_NativeTypeID
+    value: 114
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[2].first.m_ManagedTypePPtr
+    value: 
+    objectReference: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[2].first.m_ManagedTypeFallback
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[2].second.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[2].second.Array.data[0].m_Preset
+    value: 
+    objectReference: {fileID: 2655988077585873504, guid: 6d5b2696698039840bbf4576196eb441,
+      type: 2}
+  - target: {fileID: 0}
+    propertyPath: m_DefaultPresets.Array.data[2].second.Array.data[0].m_Filter
+    value: 
+    objectReference: {fileID: 0}

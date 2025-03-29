@@ -1,0 +1,67 @@
+{
+  "name": "com.hg.hoopygameframework",
+  "displayName": "HoopyGame Framework",
+  "description": "HoopyGameStudio Unity Framework",
+  "version": "0.0.1",
+  "author": {
+    "name": "HoopyGame.Hoopy",
+    "email": "dhaopi@163.com"
+  },
+  "keywords": [
+    "Framework",
+    "HoopyGame"
+  ],
+  "samples": [
+    {
+      "displayName": "Architecture",
+      "description": "Architecture",
+      "path": "Samples~/Architecture"
+    },
+    {
+      "displayName": "NUR",
+      "description": "UI\u7684\u4f7f\u7528\u65b9\u6cd5",
+      "path": "Samples~/NUR"
+    },
+    {
+      "displayName": "Gifts",
+      "description": "\u793c\u5305\u7684\u4f7f\u7528\u65b9\u6cd5",
+      "path": "Samples~/Gifts"
+    },
+    {
+      "displayName": "Redpoint",
+      "description": "\u7ea2\u70b9\u7684\u4f7f\u7528\u65b9\u6cd5",
+      "path": "Samples~/Redpoint"
+    },
+    {
+      "displayName": "AssetsPackage",
+      "description": "\u9884\u5236\u8d44\u6e90\u6587\u4ef6\u5939",
+      "path": "Samples~/AssetsPackage"
+    },
+    {
+      "displayName": "ClickEffect",
+      "description": "\u70b9\u51fb\u6548\u679c",
+      "path": "Samples~/ClickEffect"
+    },
+    {
+      "displayName": "Examine",
+      "description": "\u8003\u6838\uff08\u5355\u9009\u591a\u9009\u5224\u65ad\uff09",
+      "path": "Samples~/Examine"
+    },
+    {
+      "displayName": "CommandMode",
+      "description": "\u547d\u4ee4\u6a21\u5f0f",
+      "path": "Samples~/CommandMode"
+    },
+    {
+      "displayName": "PlayerContorller",
+      "description": "\u7b2c\u4e00\u4eba\u79f0\u63a7\u5236\u5668",
+      "path": "Samples~/PlayerContorller"
+    }
+  ],
+  "dependencies": {
+    "com.unity.textmeshpro": "3.0.9",
+    "jp.hadashikick.vcontainer": "1.14.0",
+    "com.tuyoogame.yooasset": "2.3.6",
+    "com.cysharp.unitask": "2.5.10"
+  }
+}
