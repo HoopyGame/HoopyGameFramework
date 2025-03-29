@@ -57,8 +57,5 @@
       "description": "\u7b2c\u4e00\u4eba\u79f0\u63a7\u5236\u5668",
       "path": "Samples~/PlayerContorller"
     }
-  ],
-  "dependencies": {
-    "com.unity.textmeshpro": "3.0.9"
-  }
+  ]
 }
