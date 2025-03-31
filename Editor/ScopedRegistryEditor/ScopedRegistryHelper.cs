@@ -36,7 +36,7 @@ namespace HoopyGame
         //        "jp.hadashikick.vcontainer"
         //    }
         //};
-        [MenuItem("Tools/Add Scoped Registry (Ultra Safe)")]
+        [MenuItem("DBug/EditorTools/LoadCustomScopeRegistry")]
         public static void AddScopedRegistry()
         {
             // 配置要添加的注册表
