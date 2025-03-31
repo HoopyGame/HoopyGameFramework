@@ -17,6 +17,7 @@
 */
 
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -43,11 +44,19 @@ namespace HoopyGame.Editor
 
         private List<Infomation> _infomations;
 
+        private const string filePathInAsset = 
+            "Assets/com.hoopygame.hoopygameframework/Editor/EditorWindows/GitHubPackage/GitHubPackagesList.asset";
+        private const string filePathInPackage = 
+            "Package/com.hoopygame.hoopygameframework/Editor/EditorWindows/GitHubPackage/GitHubPackagesList.asset";
+
         [MenuItem("DBug/Tools/ImportGitHubPackage",priority =12)]
 		public static void Open()
 		{
             GetWindow<ImportPackageEditor>("GitHubPackage");
-            _gitHubPackageList = AssetDatabase.LoadAssetAtPath<GitHubPackagesList>("Assets/HoppyGame_DBF/Editor/EditorWindows/GitHubPackage/GitHubPackagesList.asset");
+
+            string filePath = File.Exists(filePathInAsset) ? filePathInAsset : filePathInPackage;
+
+            _gitHubPackageList = AssetDatabase.LoadAssetAtPath<GitHubPackagesList>(filePath);
         }
 
         private void OnGUI()

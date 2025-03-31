@@ -59,6 +59,8 @@ public static class MultiDependencyInstaller
     [MenuItem("DBug/ImportDependences")]
     public static void CheckAllDependencies()
     {
+        Debug.Log("检测依赖");
+
         if (SessionState.GetBool("AllDependenciesChecked", false))
             return;
 

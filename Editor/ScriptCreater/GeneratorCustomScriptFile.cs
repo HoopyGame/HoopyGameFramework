@@ -28,9 +28,11 @@ namespace HoopyGame.Editor
     public class GeneratorCustomScriptFile
     {
         //com.hg.hoopygameframework\Editor\ScriptCreater
-        private const string _packageScriptTempatePath = "Packages/com.hg.hoopygameframework/Editor/ScriptCreater/Template/";
-        private const string _assetScriptTempatePath = "Assets/HoppyGame_DBF/Editor/ScriptCreater/Template/";
-
+        //Assets\com.hoopygame.hoopygameframework\Editor\ScriptCreater\Template
+        private const string assetScriptTempatePath =
+            "Assets/com.hoopygame.hoopygameframework/Editor/ScriptCreater/Template/";
+        private const string packageScriptTempatePath =
+            "Packages/com.hg.hoopygameframework/Editor/ScriptCreater/Template/";
 
         [MenuItem("Assets/Create/Noraml C#", false, 60)]
         public static void GeneratorCSharp()
@@ -68,22 +70,20 @@ namespace HoopyGame.Editor
         {
             Generator("Utility");
         }
-        
 
         public static void Generator(string csharpFileName)
         {
+            string filename = csharpFileName + ".cs.txt";
+
+            string filePath = File.Exists(assetScriptTempatePath + filename) ? assetScriptTempatePath + filename : packageScriptTempatePath + filename;
+            
+            Debug.Log(assetScriptTempatePath + filename);
             ProjectWindowUtil.StartNameEditingIfProjectWindowExists(0,
                    ScriptableObject.CreateInstance<CreateEventCSScriptAsset>(),
                    GetSelectPathOrFallback() + "/" + csharpFileName + ".cs", EditorGUIUtility.FindTexture("cs Script Icon"),
-                  combinPath(csharpFileName));
+                  filePath);
         }
 
-        public static string combinPath(string fileName,bool isPacakgePath=true)
-        {
-            return isPacakgePath?
-                Path.Combine(_packageScriptTempatePath, fileName + ".cs.txt") :
-                Path.Combine(_assetScriptTempatePath, fileName + ".cs.txt");
-        }
 
 
         public static string GetSelectPathOrFallback()
