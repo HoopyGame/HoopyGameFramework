@@ -6,7 +6,7 @@
                    |_|    |___/                            
 ┌──────────────────────────────────────────────┐
 │　Copyright(C) 2025 by HoopyGameStudio
-│　描   述*：
+│　描   述*：自动注册ScopedRegistry
 │　创 建 人*：Hoopy
 │　创建时间：2025-01-01 00:00:00
 └──────────────────────────────────────────────┘
@@ -15,9 +15,7 @@
 │　修改描述：
 └──────────────────────────────────────────────┘
 */
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
@@ -26,8 +24,6 @@ namespace HoopyGame
 {
     public static class ScopedRegistryHelper
     {
-        //ScopedRegistry newRegistry = new ScopedRegistry
-        //{
         //    name = "package.openupm.com",
         //    url = "https://package.openupm.com",
         //    scopes = new string[]
@@ -35,10 +31,26 @@ namespace HoopyGame
         //        "com.tuyoogame.yooasset",
         //        "jp.hadashikick.vcontainer"
         //    }
-        //};
+        [InitializeOnLoadMethod]
+        public static void Init()
+        {
+            string editorPath = Application.dataPath + "/Editor";
+            if (!Directory.Exists(editorPath))
+            {
+                Debug.Log("自动创建Editor文件夹.");
+                Directory.CreateDirectory(editorPath);
+            }
+            if (File.Exists(editorPath + "/lock.hoopygame")) return;
+            AddScopedRegistry();
+            //在Asset中添加一个文件锁
+            File.Create(editorPath + "/lock.hoopygame");
+        }
+
         [MenuItem("DBug/EditorTools/LoadCustomScopeRegistry")]
         public static void AddScopedRegistry()
         {
+            
+
             // 配置要添加的注册表
             var registry = new ScopedRegistryConfig
             {
@@ -52,6 +64,7 @@ namespace HoopyGame
             };
 
             AddScopedRegistryToManifest(registry);
+
         }
 
         private static void AddScopedRegistryToManifest(ScopedRegistryConfig registry)
@@ -59,7 +72,7 @@ namespace HoopyGame
             string manifestPath = Path.Combine(Application.dataPath, "../Packages/manifest.json");
             if (!File.Exists(manifestPath))
             {
-                Debug.LogError("manifest.json not found!");
+                Debug.LogError("没有找到manifest.json");
                 return;
             }
 
@@ -69,7 +82,7 @@ namespace HoopyGame
             if (Regex.IsMatch(originalJson, $@"""name""\s*:\s*""{registry.name}""") ||
                 Regex.IsMatch(originalJson, $@"""url""\s*:\s*""{registry.url}"""))
             {
-                Debug.LogWarning($"Scoped Registry '{registry.name}' already exists!");
+                Debug.LogWarning($"当前已经存在注册表：'{registry.name}'，无需新增！");
                 return;
             }
 
@@ -105,7 +118,7 @@ namespace HoopyGame
 
             // 4. 写入文件（保留所有原有格式）
             File.WriteAllText(manifestPath, originalJson);
-            Debug.Log($"Added Scoped Registry: {registry.name}");
+            Debug.Log($"新增 Scoped Registry: {registry.name}");
 
             // 5. 强制刷新包管理器
             UnityEditor.PackageManager.Client.Resolve();
