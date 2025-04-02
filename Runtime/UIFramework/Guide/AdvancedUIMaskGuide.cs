@@ -105,7 +105,11 @@ namespace HoopyGame
             return this;
         }
         #endregion
-
+        /// <summary>
+        /// 开始引导
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="tweenCallback"></param>
         public void StartGuide(RectTransform target, TweenCallback tweenCallback = null)
         {
             if (_locked) return;
