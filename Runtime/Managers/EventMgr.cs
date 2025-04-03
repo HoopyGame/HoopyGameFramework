@@ -17,7 +17,8 @@
 */
 using System.Collections.Generic;
 using UnityEngine.Events;
-public class EventMgr : SingleBase<EventMgr>
+using VContainer.Unity;
+public class EventMgr : IStartable
 {
     enum EventType
     {
@@ -28,11 +29,15 @@ public class EventMgr : SingleBase<EventMgr>
     private Dictionary<string, UnityAction<object>> _oneParameterDir;
     //这里可以根据自己的需求增加新的map
 
-    //确保使用的时候才创建，节省资源
-    protected override void Init()
+    public EventMgr()
     {
+        DebugUtils.Print("注册了");
         _noParameterEventDir = new Dictionary<string, UnityAction>();
         _oneParameterDir = new Dictionary<string, UnityAction<object>>();
+    }
+    public void Start()
+    {
+        
     }
 
     #region 没有参数的
@@ -112,10 +117,9 @@ public class EventMgr : SingleBase<EventMgr>
 
     #endregion
 
-    public override void Clear()
+    public void Clear()
     {
         ClearEvent();
-        base.Clear();
     }
     public void ClearEvent()
     {
@@ -135,4 +139,5 @@ public class EventMgr : SingleBase<EventMgr>
         }
     }
 
+    
 }

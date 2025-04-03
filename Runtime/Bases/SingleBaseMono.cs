@@ -17,7 +17,7 @@
 */
 using System;
 using UnityEngine;
-[Obsolete("此基类类已经过时-->请使用依赖注入进行单例管理")]
+//[Obsolete("此基类类已经过时-->请使用依赖注入进行单例管理")]
 public class SingleBaseMono<T> : MonoBehaviour where T : SingleBaseMono<T>
 {
     protected static bool _inited;

@@ -15,12 +15,8 @@
 │　修改描述：
 └──────────────────────────────────────────────┘
 */
-public class MsgStrMgr : SingleBase<MsgStrMgr>
+public class MsgStrMgr
 {
-
-
-
-
     public struct Local
     {
         /// <summary>

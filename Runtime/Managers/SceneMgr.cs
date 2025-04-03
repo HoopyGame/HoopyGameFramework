@@ -21,7 +21,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using VContainer;
 using HoopyGame.UIF;
+using VContainer.Unity;
 
 public class SceneMgr : SingleBaseMono<SceneMgr>
 {
@@ -30,6 +32,7 @@ public class SceneMgr : SingleBaseMono<SceneMgr>
     private Slider m_loadSceenProgress_Sld;
 
     private float _loadProgress;
+
 
     /// <summary>
     /// 下一个要加载的场景
@@ -58,7 +61,7 @@ public class SceneMgr : SingleBaseMono<SceneMgr>
     {
         //场景同步加载
         SceneManager.LoadScene(sceneName, loadSceneMode);
-        EventMgr.Instance.TriggerEvent(MsgStrMgr.Local.LoadSceneEvent);
+        LifetimeScope.Find<GameLifetimeScope>().Container.Resolve<EventMgr>().TriggerEvent(MsgStrMgr.Local.LoadSceneEvent);
         //加载完成过后 才会去执行fun
         fun?.Invoke();
     }
@@ -66,7 +69,7 @@ public class SceneMgr : SingleBaseMono<SceneMgr>
     {
         //场景同步加载
         SceneManager.LoadScene(sceneindex, loadSceneMode);
-        EventMgr.Instance.TriggerEvent(MsgStrMgr.Local.LoadSceneEvent);
+        LifetimeScope.Find<GameLifetimeScope>().Container.Resolve<EventMgr>().TriggerEvent(MsgStrMgr.Local.LoadSceneEvent);
         //加载完成过后 才会去执行fun
         fun?.Invoke();
     }
