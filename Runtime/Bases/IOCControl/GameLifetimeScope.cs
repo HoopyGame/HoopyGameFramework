@@ -15,13 +15,18 @@
 ©¦¡¡ÐÞ¸ÄÃèÊö£º
 ©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼
 */
+using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-public class GameLifetimeScope : LifetimeScope
+namespace HoopyGame
 {
-    protected override void Configure(IContainerBuilder builder)
+    public class GameLifetimeScope : LifetimeScope
     {
-        builder.Register<EventMgr>(Lifetime.Singleton);
+        protected override void Configure(IContainerBuilder builder)
+        {
+            builder.Register<EventMgr>(Lifetime.Singleton);
+            builder.Register<ObjectPoolMgr>(Lifetime.Singleton);
+        }
     }
 }

@@ -18,14 +18,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPoolMgr : SingleBase<ObjectPoolMgr>
+public class ObjectPoolMgr
 {
     //所有对象池的父物体
     private Transform _allPoolDataParent = null;
     private Dictionary<string, SinglePoolData> _objectPool;
-    protected override void Init()
+
+    ObjectPoolMgr()
     {
-        base.Init();
         _objectPool = new Dictionary<string, SinglePoolData>();
         _allPoolDataParent = new GameObject("GameObjectPool").transform;
     }
@@ -71,9 +71,8 @@ public class ObjectPoolMgr : SingleBase<ObjectPoolMgr>
     /// <summary>
     /// 清空池子
     /// </summary>
-    public override void Clear()
+    public void Clear()
     {
-        base.Clear();
         _objectPool.Clear();
     }
 }

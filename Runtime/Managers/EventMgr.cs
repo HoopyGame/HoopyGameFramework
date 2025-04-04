@@ -18,7 +18,7 @@
 using System.Collections.Generic;
 using UnityEngine.Events;
 using VContainer.Unity;
-public class EventMgr : IStartable
+public class EventMgr
 {
     enum EventType
     {
@@ -31,15 +31,9 @@ public class EventMgr : IStartable
 
     public EventMgr()
     {
-        DebugUtils.Print("注册了");
         _noParameterEventDir = new Dictionary<string, UnityAction>();
         _oneParameterDir = new Dictionary<string, UnityAction<object>>();
     }
-    public void Start()
-    {
-        
-    }
-
     #region 没有参数的
     /// <summary>
     /// 添加一个没有参数的订阅
