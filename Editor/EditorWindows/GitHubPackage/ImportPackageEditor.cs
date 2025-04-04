@@ -47,7 +47,7 @@ namespace HoopyGame.Editor
         private const string filePathInAsset = 
             "Assets/com.hoopygame.hoopygameframework/Editor/EditorWindows/GitHubPackage/GitHubPackagesList.asset";
         private const string filePathInPackage = 
-            "Package/com.hoopygame.hoopygameframework/Editor/EditorWindows/GitHubPackage/GitHubPackagesList.asset";
+            "Packages/com.hoopygame.hoopygameframework/Editor/EditorWindows/GitHubPackage/GitHubPackagesList.asset";
 
         [MenuItem("DBug/Tools/ImportGitHubPackage",priority =12)]
 		public static void Open()
