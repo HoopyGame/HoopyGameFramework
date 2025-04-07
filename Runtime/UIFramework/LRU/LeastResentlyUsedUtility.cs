@@ -6,7 +6,7 @@
                    |_|    |___/                            
 ┌──────────────────────────────────────────────┐
 │　Copyright(C) 2025 by HoopyGameStudio
-│　描   述*：最久未使用基础算法，N次不操作UI就清除掉
+│　描   述*：最近最久未使用基础算法，N次不操作UI就清除掉
 │　创 建 人*：Hoopy
 │　创建时间：2025-01-01 00:00:00
 └──────────────────────────────────────────────┘
@@ -21,7 +21,7 @@ using HoopyGame.Core;
 
 namespace HoopyGame.UIF
 {
-    public class NotUsedResentlyUtility : IUtility
+    public class LeastResentlyUsedUtility : IUtility
     {
         private class Content
         {
@@ -41,7 +41,7 @@ namespace HoopyGame.UIF
         private BaseUI tmpBaseui;
 
 
-        public NotUsedResentlyUtility(int closeUIThreshold)
+        public LeastResentlyUsedUtility(int closeUIThreshold)
         {
             _closeUIThreshold = closeUIThreshold;
             tmpBaseui = null;

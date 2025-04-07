@@ -47,7 +47,7 @@ namespace HoopyGame.UIF
         private Dictionary<UIType, Dictionary<string, BaseUI>> _totalUIMap;           //所有UI的存放
         private Dictionary<string, BasePopup> _openingPopupUI;                        //目前打开着的Popup
 
-        private NotUsedResentlyUtility _notUsedResentlyUI;                            //最久未使用算法
+        private LeastResentlyUsedUtility _notUsedResentlyUI;                            //最久未使用算法
         private UIFactory _uiFactory;
 
         public IHGArchitecture GetHGArchitecture() => UIArchitecture.Instance;
@@ -65,7 +65,7 @@ namespace HoopyGame.UIF
         public override void OnInit()
         {
             InitUIMap();
-            _notUsedResentlyUI = this.GetUtility<NotUsedResentlyUtility>();
+            _notUsedResentlyUI = this.GetUtility<LeastResentlyUsedUtility>();
             //实例工厂
             _uiFactory = new UIFactory();
             try

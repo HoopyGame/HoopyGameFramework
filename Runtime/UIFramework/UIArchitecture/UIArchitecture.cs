@@ -25,7 +25,7 @@ namespace HoopyGame.UIF
         public override IOCContainer AppointParentIOC() => null;
         protected override void Init()
         {
-            this.RegisterUtility(new NotUsedResentlyUtility(5));
+            this.RegisterUtility(new LeastResentlyUsedUtility(5));
 
         }
     }
