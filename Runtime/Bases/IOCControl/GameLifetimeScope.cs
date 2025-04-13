@@ -15,7 +15,6 @@
 │　修改描述：
 └──────────────────────────────────────────────┘
 */
-using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -25,8 +24,15 @@ namespace HoopyGame
     {
         protected override void Configure(IContainerBuilder builder)
         {
+
+            //--不需要Mono的单例
+            //事件系统
             builder.Register<EventMgr>(Lifetime.Singleton);
+            //对象池系统
             builder.Register<ObjectPoolMgr>(Lifetime.Singleton);
+
+            //--需要Mono的单例
+            
         }
     }
 }
