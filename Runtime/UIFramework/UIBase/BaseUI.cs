@@ -40,7 +40,7 @@ namespace HoopyGame.UIF
         /// </summary>
         public bool IsInit { get; private set; }
         /// <summary>
-        /// Open一个UI(可重写OpenEff方法自定义弹出效果)
+        /// Open一个UI(如需打开效果，重写此方法)
         /// </summary>
         /// <param name="data">数据</param>
         public virtual void Open(IUIDataBase data = null)
@@ -66,12 +66,13 @@ namespace HoopyGame.UIF
             IsInit = true;
         }
         /// <summary>
-        /// Close 
+        /// Close一个UI(如需关闭效果，重写此方法，效果结束后base.Close即可)
         /// </summary>
         public virtual void Close(bool isDestroy = false)
         {
             UIMgr.Instance.CloseUI(this, uiType, isDestroy);
         }
+
         public void InitCloseCallback(Action act)
         {
             if (act != null)
