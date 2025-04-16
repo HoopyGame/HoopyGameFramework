@@ -31,6 +31,8 @@ public class EventMgr
 
     public EventMgr()
     {
+        DebugUtils.Print("初始化事件管理器..");
+
         _noParameterEventDir = new Dictionary<string, UnityAction>();
         _oneParameterDir = new Dictionary<string, UnityAction<object>>();
     }

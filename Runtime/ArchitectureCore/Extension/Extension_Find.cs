@@ -107,18 +107,14 @@ public static partial class Extension
     /// <param name="childName">子物体的名字</param>
     /// <returns></returns>
     public static Button FindButtonFrommChilds(this Transform self, string childName)
-    {
-        return self.FindComponentFromChild<Button>(childName);
-    }
+        => self.FindComponentFromChild<Button>(childName);
     /// <summary>
     /// 查找一个Toggle（省事）
     /// </summary>
     /// <param name="childName">子物体的名字</param>
     /// <returns></returns>
     public static Toggle FindToggleFromChilds(this Transform self, string childName)
-    {
-        return self.FindComponentFromChild<Toggle>(childName);
-    }
+        => self.FindComponentFromChild<Toggle>(childName);
     /// <summary>
     /// 查找一个TextMeshProUGUI
     /// </summary>
@@ -126,8 +122,14 @@ public static partial class Extension
     /// <param name="childName"></param>
     /// <returns></returns>
     public static TextMeshProUGUI FindTextMeshProUGUIFromChilds(this Transform self, string childName)
-    {
-        return self.FindComponentFromChild<TextMeshProUGUI>(childName);
-    }
+        => self.FindComponentFromChild<TextMeshProUGUI>(childName);
+    /// <summary>
+    /// 查找一个Image
+    /// </summary>
+    /// <param name="self"></param>
+    /// <param name="childName"></param>
+    /// <returns></returns>
+    public static Image FindImageFromChilds(this Transform self,string childName)
+        => self.FindComponentFromChild<Image>(childName);
     #endregion
 }

@@ -32,7 +32,7 @@ namespace HoopyGame
             builder.Register<ObjectPoolMgr>(Lifetime.Singleton);
 
             //--需要Mono的单例
-            
+            builder.Register<AudioMgr>(Lifetime.Singleton);
         }
     }
 }

@@ -43,6 +43,7 @@ namespace HoopyGame
 
         public void Start()
         {
+            DebugUtils.Print("初始化音频管理器..");
             InitComponent();
             InitData();
         }
@@ -104,22 +105,25 @@ namespace HoopyGame
         /// 设置BGM的音量 0-100
         /// </summary>
         /// <param name="volume"></param>
-        public void SetBGMAudioVolume(float volume)
+        public void SetBGMAudioVolume(int volume)
         {
-
+            DebugUtils.Print(AudioVolumeMapping(volume));
         }
         /// <summary>
         /// 设置Eff的音量 0-100
         /// </summary>
         /// <param name="voluem"></param>
-        public void SetEffAduioVolume(float voluem)
+        public void SetEffAduioVolume(int voluem)
         {
 
         }
-        //音量映射0-100映射到 -80 -10
+        //音量映射0-100映射到 - 80-10
         private int AudioVolumeMapping(int volume)
         {
-            return (int)(0.8 * volume - 80);
+            // 先将0-100线性值转换为0-1
+            float linear = volume / 100f;
+            // 然后使用对数映射（更符合音频特性）
+            return (int)Mathf.Lerp(-80f, 20f, Mathf.Pow(linear, 0.5f));
         }
         #endregion
 

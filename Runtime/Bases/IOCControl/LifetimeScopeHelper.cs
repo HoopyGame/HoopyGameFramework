@@ -43,6 +43,15 @@ namespace HoopyGame
             return GetLifetimeScopeContainer(t).Resolve<T>();
         }
         /// <summary>
+        /// 直接从GameLifetimeScope里寻找
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T GetFromeGLS<T>()
+        {
+            return GetLifetimeScopeContainer(typeof(GameLifetimeScope)).Resolve<T>();
+        }
+        /// <summary>
         /// 获取当类型作用域
         /// </summary>
         /// <param name="t"></param>
