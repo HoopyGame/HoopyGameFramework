@@ -42,7 +42,7 @@ namespace HoopyGame.UIF
         public Image Shield { get; private set; }                                     //遮罩
 
         private readonly float _shieldHight = .8f;                                    //遮罩的暗度
-        private readonly float _shieldHideDuration = .2f;                             //隐藏或显示持续时间
+        private readonly float _shieldHideDuration = .25f;                             //隐藏或显示持续时间
 
         private Dictionary<UIType, Dictionary<string, BaseUI>> _totalUIMap;           //所有UI的存放
         private Dictionary<string, BasePopup> _openingPopupUI;                        //目前打开着的Popup

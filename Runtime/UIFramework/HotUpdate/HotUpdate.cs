@@ -94,7 +94,7 @@ namespace HoopyGame.UIF
             SetProgress(1);
             //1.初始化YooAssets
             YooAssets.Initialize();
-            SetStatus("初始化完成");
+            SetStatus("检测资源更新*_*");
             //2.创建资源包
             _mainPackage = YooAssets.TryGetPackage(_packageName);
             if (_mainPackage == null) _mainPackage = YooAssets.CreatePackage(_packageName);
@@ -224,11 +224,12 @@ namespace HoopyGame.UIF
             if (requestOperation.Status != EOperationStatus.Succeed)
             {
                 //获取版本号失败
-                ShowErrorTips($"获取资源版本号失败！", requestOperation.Error);
+                ShowErrorTips($"获取资源版本号失败T_T！", requestOperation.Error);
                 return;
             }
             packageVersion = requestOperation.PackageVersion;
-            SetStatus($"获取资源版本号成功：{packageVersion}");
+            //SetStatus($"获取资源版本号成功：{packageVersion}");
+            DebugUtils.Print($"获取资源版本号成功：{packageVersion}");
             GetAssetManifestFile().Forget();
         }
         /// <summary>
@@ -237,7 +238,7 @@ namespace HoopyGame.UIF
         /// <returns></returns>
         private async UniTaskVoid GetAssetManifestFile()
         {
-            //5.获取文件清单列表
+            //5.获取文件清单列表  单机是否需要更新清单
             var updateManifestOperation = _mainPackage.UpdatePackageManifestAsync(packageVersion);
             await updateManifestOperation;
             if (updateManifestOperation.Status != EOperationStatus.Succeed)
@@ -249,7 +250,7 @@ namespace HoopyGame.UIF
             if (_playMode == EPlayMode.EditorSimulateMode || _playMode == EPlayMode.OfflinePlayMode)
             {
                 //编辑器模拟模式下不需要下载资源
-                SetStatus($"目前版本是最新版");
+                SetStatus($"目前资源是最新的O。O");
                 await UniTask.WaitForSeconds(.5f);
                 StartGame();
                 return;
@@ -262,7 +263,7 @@ namespace HoopyGame.UIF
             if (_downloaderOperation.TotalDownloadCount == 0)
             {
                 //没有需要下载的资源
-                DebugUtils.Print("无需要更新的资源");
+                SetStatus($"目前资源是最新的O。O");
                 StartGame();
                 return;
             }
@@ -273,12 +274,26 @@ namespace HoopyGame.UIF
 
             //弹窗更新(检查是否强更新，非强更新可以取消)
         }
+        //点击更新按钮
+        public void OnUpdateBtnClick()
+        {
+            //点击更新按钮
+            SetStatus($"正在下载资源，请稍等O。O");
+            _needUpdateTips.gameObject.SetActive(false);
+            //开始下载资源
+            DownHotAssets().Forget();
+        }
+        //点击取消更新按钮
+        public void OnCancelBtnClick()
+        {
+            //判断是否是强制更新，不是强制更新可以直接进入，是强制更新直
+        }
 
         /// <summary>
         /// 下载热更新资源
         /// </summary>
         /// <returns></returns>
-        private IEnumerator DownHotAssets()
+        private async UniTaskVoid DownHotAssets()
         {
             //7.注册下载进度回调-->开始下载
             _downloaderOperation.BeginDownload(); //开始下载
@@ -335,24 +350,25 @@ namespace HoopyGame.UIF
         private void ShowErrorTips(string errorStr,string debug)
         {
             DebugUtils.Print(errorStr + "---->" + debug, DebugType.Error);
-            _shale_img.DOFade(.8f, .2f);
+            _shale_img.DOFade(.8f, .25f);
 
             _errorTipsContent.text = errorStr;
             _errorTips.localScale = Vector3.zero;
             _errorTips.gameObject.SetActive(true);
-            _errorTips.DOScale(Vector3.one, .56f)
+            _errorTips.DOScale(Vector3.one, .4f)
                 .SetEase(Ease.OutBack);
         }
         public void HideErrorTips()
         {
-            _shale_img.DOFade(0f, .2f);
-            _errorTips.DOScale(Vector3.zero, .56f)
+            _shale_img.DOFade(0f, .25f);
+            _errorTips.DOScale(Vector3.zero, .3f)
                 .SetEase(Ease.InBack)
                 .OnComplete(() =>
                 {
                     _errorTips.gameObject.SetActive(false);
                 });
         }
+        //设置更新提示
         private void SetUpdateTips(string updateTips)
         {
 
@@ -363,20 +379,6 @@ namespace HoopyGame.UIF
         {
             
         }
-        //IEnumerator LoadAsset()
-        //{
-        //    AssetHandle handle = _mainPackage.LoadAssetAsync<GameObject>("Assets/Arts/Prefabs/Cube.prefab");
-        //    yield return handle;
-        //    GameObject go = handle.InstantiateSync();
-        //    Debug.Log($"Prefab name is {go.name}");
-
-        //    AssetHandle handle2 = _mainPackage.LoadAssetAsync<Texture2D>("Assets/Arts/Prefabs/Black.png");
-        //    yield return handle2;
-        //    Texture2D texture = handle2.AssetObject as Texture2D;
-        //    Debug.Log(texture.name);
-        //    i.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-        //    i.SetNativeSize();
-        //}
         /// <summary>
         /// 远端资源地址查询服务类
         /// </summary>
