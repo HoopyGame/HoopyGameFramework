@@ -30,6 +30,8 @@ namespace HoopyGame
             builder.Register<EventMgr>(Lifetime.Singleton);
             //对象池系统
             builder.Register<ObjectPoolMgr>(Lifetime.Singleton);
+            //资源管理系统
+            builder.Register<AssetMgr>(Lifetime.Singleton);
 
             //--需要Mono的单例
             builder.Register<AudioMgr>(Lifetime.Singleton);
