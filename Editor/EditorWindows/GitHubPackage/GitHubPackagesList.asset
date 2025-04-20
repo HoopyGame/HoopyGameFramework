@@ -227,6 +227,12 @@ MonoBehaviour:
   - name: Unity3DTraining
     infomation: "\u3010Unity\u6742\u8D27\u94FA\u3011unity\u5927\u6742\u70E9~"
     URL: https://github.com/XINCGer/Unity3DTraining
+  - name: "\u5927\u8BDD\u8BBE\u8BA1\u6A21\u5F0F"
+    infomation: "\u5927\u8BDD\u8BBE\u8BA1\u6A21\u5F0F\u7535\u5B50\u7248"
+    URL: https://www.cnblogs.com/zhili/p/DesignPatternSummery.html
+  - name: "\u6E38\u620F\u8BBE\u8BA1\u6A21\u5F0F"
+    infomation: "\u8BBE\u8BA1\u6A21\u5F0F\uFF1A\u53EF\u590D\u7528\u9762\u5411\u5BF9\u8C61\u8F6F\u4EF6\u7684\u57FA\u7840"
+    URL: https://gpp.tkchu.me/introduction.html
   Samples:
   - name: ECSSample
     infomation: "ECS\u5B98\u65B9\u793A\u4F8B"

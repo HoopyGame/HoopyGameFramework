@@ -18,8 +18,6 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System;
-using System.Collections;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -51,15 +49,8 @@ namespace HoopyGame.UIF
         [SerializeField]
         EPlayMode _playMode = EPlayMode.EditorSimulateMode;                         //资源加载模式
         [SerializeField]
-        private string _packageName = "MainPackage";                                //资源包名称
-        [SerializeField]
         private string _cloudPackageVersion = "";                                    //云端资源版本
         private string _localPackageVersion = "0.0.0";                               //本地资源版本
-        [Header("远端资源地址配置")]
-        [SerializeField]
-        private string defaultHostServer = "http://127.0.0.1/CDN/Android/v1.0";     //远端资源地址
-        [SerializeField]
-        private string fallbackHostServer = "http://127.0.0.1/CDN/Android/v1.0";    //备用远端资源地址
         [Header("资源包下载相关")]
         [SerializeField]
         private int downloadingMaxNum = 10;                                         //最大下载数量
@@ -99,8 +90,8 @@ namespace HoopyGame.UIF
             YooAssets.Initialize();
             SetStatus("检测资源更新O.o");
             //2.创建资源包
-            _mainPackage = YooAssets.TryGetPackage(_packageName);
-            if (_mainPackage == null) _mainPackage = YooAssets.CreatePackage(_packageName);
+            _mainPackage = YooAssets.TryGetPackage(HotAssetConfig.PackageName);
+            if (_mainPackage == null) _mainPackage = YooAssets.CreatePackage(HotAssetConfig.PackageName);
             else _localPackageVersion = _mainPackage.GetPackageVersion();
 
             DebugUtils.Print($"本地资源包版本:{_localPackageVersion}");
@@ -154,7 +145,7 @@ namespace HoopyGame.UIF
         /// </summary>
         private async UniTaskVoid EditorSimulateMode()
         {
-            var buildResult = EditorSimulateModeHelper.SimulateBuild(_packageName);
+            var buildResult = EditorSimulateModeHelper.SimulateBuild(HotAssetConfig.PackageName);
             var packageRoot = buildResult.PackageRootDirectory;
             var editorFileSystemParams = FileSystemParameters.CreateDefaultEditorFileSystemParameters(packageRoot);
             var initParameters = new EditorSimulateModeParameters();
@@ -182,7 +173,7 @@ namespace HoopyGame.UIF
         /// </summary>
         private async UniTaskVoid HostPlayMode()
         {
-            IRemoteServices remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+            IRemoteServices remoteServices = new RemoteServices(HotAssetConfig.GetDefaultHostServer, HotAssetConfig.GetFallbackHostServer);
             var cacheFileSystemParams = FileSystemParameters.CreateDefaultCacheFileSystemParameters(remoteServices);
             var buildinFileSystemParams = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
 
@@ -199,7 +190,7 @@ namespace HoopyGame.UIF
         /// </summary>
         private async UniTaskVoid WebPlayMode()
         {
-            IRemoteServices remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+            IRemoteServices remoteServices = new RemoteServices(HotAssetConfig.GetDefaultHostServer, HotAssetConfig.GetFallbackHostServer);
             var webServerFileSystemParams = FileSystemParameters.CreateDefaultWebServerFileSystemParameters();
             var webRemoteFileSystemParams = FileSystemParameters.CreateDefaultWebRemoteFileSystemParameters(remoteServices); //支持跨域下载
 

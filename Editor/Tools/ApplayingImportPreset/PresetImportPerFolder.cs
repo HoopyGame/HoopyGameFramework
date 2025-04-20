@@ -30,10 +30,12 @@ namespace HoopyGame.Editor
             {
                 // 获取当前导入的资源文件夹。
                 var path = Path.GetDirectoryName(assetPath);
+
                 while (!string.IsNullOrEmpty(path))
                 {
                     // 查找此文件夹中的所有预设资源。
                     var presetGuids = AssetDatabase.FindAssets("t:Preset", new[] { path });
+
                     foreach (var presetGuid in presetGuids)
                     {
                         // 确保不是在子文件夹中测试预设。
