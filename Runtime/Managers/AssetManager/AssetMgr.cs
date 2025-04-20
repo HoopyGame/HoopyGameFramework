@@ -16,6 +16,7 @@
 └──────────────────────────────────────────────┘
 */
 using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using YooAsset;
@@ -29,18 +30,29 @@ namespace HoopyGame
     public class AssetMgr
     {
         //Cache
+        private List<AssetBundle> _bundles;
 
+        AssetMgr()
+        {
+            _bundles = new List<AssetBundle>();
+        }
 
+        public ResourcePackage GetPacakge(string packageName)
+        {
+            if (string.IsNullOrEmpty(packageName)) packageName = HotAssetConfig.PackageName;
+            return YooAssets.TryGetPackage(packageName);
+        }
 
         /// <summary>
-        /// 加载一个资源
+        /// 异步加载一个资源
         /// <summary>
         /// <param name="location">资源名字</param>
         /// <returns>返回资源</returns>
         /// <exception cref="MissingReferenceException"></exception>
-        public async UniTask<T> LoadAssetAsync<T>(string location) where T : Object
+        public async UniTask<T> LoadAssetAsync<T>(string location, string packageName = HotAssetConfig.PackageName) where T : Object
         {
-            AssetHandle ah = YooAssets.LoadAssetAsync<T>(location);
+
+            AssetHandle ah = GetPacakge(packageName).LoadAssetAsync<T>(location);
             await ah;
             if (ah.Status != EOperationStatus.Succeed)
             {
@@ -49,14 +61,25 @@ namespace HoopyGame
             return ah.AssetObject as T;
         }
         /// <summary>
-        /// 加载一个GameObject
+        /// 同步加载一个资源
+        /// <summary>
+        /// <param name="location">资源名字</param>
+        /// <returns>返回资源</returns>
+        /// <exception cref="MissingReferenceException"></exception>
+        public T LoadAssetSync<T>(string location, string packageName = HotAssetConfig.PackageName) where T : Object
+        {
+            AssetHandle ah = GetPacakge(packageName).LoadAssetSync<T>(location);
+            return ah.AssetObject as T;
+        }
+        /// <summary>
+        /// 异步加载一个GameObject
         /// </summary>
         /// <param name="assetName">物体名字</param>
         /// <returns>返回该物体</returns>
         /// <exception cref="MissingReferenceException"></exception>
-        public async UniTask<GameObject> LoadAssetAsync(string assetName)
+        public async UniTask<GameObject> LoadAssetAsync(string assetName, string packageName = HotAssetConfig.PackageName)
         {
-            AssetHandle ah = YooAssets.LoadAssetAsync<GameObject>(assetName);
+            AssetHandle ah = GetPacakge(packageName).LoadAssetAsync<GameObject>(assetName);
             await ah;
             if (ah.Status != EOperationStatus.Succeed)
             {
@@ -64,6 +87,14 @@ namespace HoopyGame
             }
             return ah.AssetObject as GameObject;
         }
+        /// <summary>
+        /// 同步加载一个GameObject
+        /// </summary>
+        /// <param name="assetName">物体名字</param>
+        /// <returns>返回该物体</returns>
+        /// <exception cref="MissingReferenceException"></exception>
+        public GameObject LoadAssetSync(string assetName, string packageName = HotAssetConfig.PackageName)
+            => GetPacakge(packageName).LoadAssetAsync<GameObject>(assetName).AssetObject as GameObject;
         /// <summary>
         /// 加载一个热更脚本DLL（.byte-->TextAsset）
         /// textAsset.bytes 二进制数据
@@ -173,6 +204,33 @@ namespace HoopyGame
         public bool IsNeedDownloadFromRemote(string assetName)
         {
             return YooAssets.IsNeedDownloadFromRemote(assetName);
+        }
+
+        /// <summary>
+        /// 卸载所有引用计数为零的资源包。
+        /// 可以在切换场景之后调用资源释放方法或者写定时器间隔时间去释放。
+        /// </summary>
+        private void UnloadUnusedAssets()
+        {
+            var package = YooAssets.GetPackage("DefaultPackage");
+            package.UnloadUnusedAssetsAsync();
+        }
+        /// <summary>
+        /// 强制卸载所有资源包，该方法请在合适的时机调用
+        /// 注意：Package在销毁的时候也会自动调用该方法
+        /// </summary>
+        private void ForceUnloadAllAssets(string packageName)
+        {
+            YooAssets.GetPackage(packageName).UnloadAllAssetsAsync();
+        }
+
+        /// <summary>
+        /// 尝试卸载指定的资源对象
+        /// 注意：如果该资源还在被使用，该方法会无效
+        /// </summary>
+        private void TryUnloadUnusedAsset(string assetName, string packageName = null)
+        {
+            GetPacakge(packageName).TryUnloadUnusedAsset(assetName);
         }
 
     }
