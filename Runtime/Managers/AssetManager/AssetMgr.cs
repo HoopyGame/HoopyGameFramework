@@ -76,6 +76,14 @@ namespace HoopyGame
 
         //Script
         /// <summary>
+        /// 同步加载一个GameObject
+        /// </summary>
+        /// <param name="assetName">物体名字</param>
+        /// <returns>返回该物体</returns>
+        /// <exception cref="MissingReferenceException"></exception>
+        public GameObject LoadAssetSync(string assetName, string packageName = HotAssetConfig.PackageName)
+            => GetPacakge(packageName).LoadAssetAsync<GameObject>(assetName).AssetObject as GameObject;
+        /// <summary>
         /// 加载一个热更脚本DLL（.byte-->TextAsset）
         /// textAsset.bytes 二进制数据
         /// textAsset.text 文本数据
