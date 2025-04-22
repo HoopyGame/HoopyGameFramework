@@ -1,7 +1,9 @@
 {
     "name": "HGEditor",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:c0595142ea4c88e4ab35f9f3b93f81ad"
+    ],
     "includePlatforms": [
         "Editor"
     ],
