@@ -17,7 +17,8 @@
 */
 using HoopyGame.Core;
 
-namespace HoopyGame{
+namespace HoopyGame
+{
 	public class #SCRIPTNAME# : AbstractSystem
 	{
 	    protected override void OnInit()

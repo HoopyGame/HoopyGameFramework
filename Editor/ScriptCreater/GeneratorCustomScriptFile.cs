@@ -77,7 +77,6 @@ namespace HoopyGame.Editor
 
             string filePath = File.Exists(assetScriptTempatePath + filename) ? assetScriptTempatePath + filename : packageScriptTempatePath + filename;
             
-            Debug.Log(assetScriptTempatePath + filename);
             ProjectWindowUtil.StartNameEditingIfProjectWindowExists(0,
                    ScriptableObject.CreateInstance<CreateEventCSScriptAsset>(),
                    GetSelectPathOrFallback() + "/" + csharpFileName + ".cs", EditorGUIUtility.FindTexture("cs Script Icon"),

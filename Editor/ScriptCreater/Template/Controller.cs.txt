@@ -18,7 +18,8 @@
 using HoopyGame.Core;
 using UnityEngine;
 
-namespace HoopyGame{
+namespace HoopyGame
+{
 	public class #SCRIPTNAME# : MonoBehaviour,IController
 	{
 		public IHGArchitecture GetHGArchitecture()

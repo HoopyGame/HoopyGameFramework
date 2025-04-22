@@ -17,7 +17,8 @@
 */
 using HoopyGame.Core;
 
-namespace HoopyGame{
+namespace HoopyGame
+{
 	public class #SCRIPTNAME# : IUtility
 	{
 

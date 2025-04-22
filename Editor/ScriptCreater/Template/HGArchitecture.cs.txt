@@ -17,7 +17,8 @@
 */
 using HoopyGame.Core;
 
-namespace HoopyGame{
+namespace HoopyGame
+{
 	public class #SCRIPTNAME# : HGArchitecture<#SCRIPTNAME#>
 	{
 		//指定上级IOC
