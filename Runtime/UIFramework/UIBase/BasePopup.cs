@@ -15,6 +15,7 @@
 ©¦¡¡ÐÞ¸ÄÃèÊö£º
 ©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼
 */
+using HoopyGame.Manager;
 using System;
 using UnityEngine.UI;
 
@@ -46,12 +47,12 @@ namespace HoopyGame.UIF
 
         public override void OnStart()
         {
-            UIMgr.Instance.ShieldControl(true);
+            LSMgr.Instance.GetFromeGLS<UIMgr>().ShieldControl(true);
             base.OnStart();
         }
         public override void Close(bool isDestory)
         {
-            UIMgr.Instance.ClosePopupToCheckShield(name);
+            LSMgr.Instance.GetFromeGLS<UIMgr>().ClosePopupToCheckShield(name);
             base.Close(isDestory);
         }
         /// <summary>

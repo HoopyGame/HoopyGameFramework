@@ -23,11 +23,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using HoopyGame.Core;
+using HoopyGame.UIF;
 
-namespace HoopyGame.UIF
+namespace HoopyGame
 {
-    public class UIMgr : SingleBaseMono<UIMgr>, IController
+    public class UIMgr
     {
         public RectTransform UIRoot { get; private set; }
 
@@ -49,23 +49,24 @@ namespace HoopyGame.UIF
 
         private LeastResentlyUsedUtility _notUsedResentlyUI;                            //最久未使用算法
         private UIFactory _uiFactory;
-
-        public IHGArchitecture GetHGArchitecture() => UIArchitecture.Instance;
-
-        private void Awake()
+        //--这里不用担心，这是多线程才可能会遇到的问题  
+        //private void Awake()
+        //{
+        //    //Tentative：创建Lazy的优先级好似比较高 这里暂定不修改 
+        //    //           内部写了_inited来规避二次初始化，后续若有问题，再来修改这里
+        //    InitSelf(this);
+        //
+        UIMgr()
         {
-            //Tentative：创建Lazy的优先级好似比较高 这里暂定不修改
-            //           内部写了_inited来规避二次初始化，后续若有问题，再来修改这里
-            InitSelf(this);
+            OnInit();
         }
-
         /// <summary>
         /// 初始化操作
         /// </summary>
-        public override void OnInit()
+        public void OnInit()
         {
             InitUIMap();
-            _notUsedResentlyUI = this.GetUtility<LeastResentlyUsedUtility>();
+            _notUsedResentlyUI = new LeastResentlyUsedUtility(5);
             //实例工厂
             _uiFactory = new UIFactory();
             try
@@ -82,8 +83,7 @@ namespace HoopyGame.UIF
             {
                 throw new MissingReferenceException("没有找到UIRoot或内容，请使用UIF的UIRoot或追踪此错误信息修改try内查找的名字");
             }
-
-            DebugUtils.Print("UIManager初始化完成！");
+            DebugUtils.Print("初始化UI管理器...");
         }
 
         /// <summary>
@@ -251,8 +251,9 @@ namespace HoopyGame.UIF
                 RemoveUIFromUIMap(baseUI.name, uiType);
                 _notUsedResentlyUI.RemoveFromTotalHideUIList(baseUI.name);
                 baseUI.OnRemoveListener();
-                baseUI.OnDestory();
-                DestroyImmediate(baseUI.gameObject);
+                baseUI.OnDestory(); 
+                //DestroyImmediate(baseUI.gameObject); --↓
+                UnityEngine.Object.DestroyImmediate(baseUI.gameObject);
             }
             else
             {

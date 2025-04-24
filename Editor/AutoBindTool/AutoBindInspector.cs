@@ -22,7 +22,6 @@ using System.Reflection;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 namespace HoopyGame.Editor
 {

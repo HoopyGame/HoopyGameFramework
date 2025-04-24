@@ -17,33 +17,36 @@
 */
 using UnityEngine;
 using UnityEngine.Audio;
-using VContainer.Unity;
 namespace HoopyGame
 {
-    public class AudioMgr : IStartable
+    public class AudioMgr
     {
         //这个需要在InitComponent里获取，具体怎么得到这个自己来定
         //默认放在了Resource里，热更请单独提出来
-        private AudioMixer _audioMixer;
         private AudioConfig _audioConfig;
 
-        //三个组
+        private AudioMixer _audioMixer;
+        private AudioListener _audioListener;
+        //BGM-SFX
+        private BGMController _bgmController;
+        private SFXController _sfxConftoller;
+
+
         private AudioMixerGroup _bgmAudioMixerGroup;
         private AudioMixerGroup _effAudioMixerGroup;
-        private AudioMixerGroup _gameAudioMixerGroup;
 
         //PlayerPrefs
         private const string BGMAudioVolume = "BGM_Audio_Volume";
         private const string EffAudioVolume = "EFF_Audio_Volume";
-        private const string GameAudioVolume = "GAME_Auido_Volume";
 
         //根据需要自己适配新的Audio
         private AudioSource _bgmAudio;
         private AudioSource _effAudio;
 
-        public void Start()
+        AudioMgr()
         {
-            DebugUtils.Print("初始化音频管理器..");
+            DebugUtils.Print("初始化音频管理器...");
+
             InitComponent();
             InitData();
         }
@@ -52,14 +55,13 @@ namespace HoopyGame
         private void InitComponent()
         {
             //在这里修改加载方式
+            _audioConfig = new AudioConfig();
             _audioMixer = Resources.Load<AudioMixer>("MixerManager");
-            _audioConfig = Resources.Load<AudioConfig>("AudioConfig");
 
             if(_audioMixer)
             {
                 _bgmAudioMixerGroup = _audioMixer.FindMatchingGroups("BGM_Group")[0];
                 _effAudioMixerGroup = _audioMixer.FindMatchingGroups("Eff_Group")[0];
-                _gameAudioMixerGroup = _audioMixer.FindMatchingGroups("Game_group")[0];
             }
 
             //BGM

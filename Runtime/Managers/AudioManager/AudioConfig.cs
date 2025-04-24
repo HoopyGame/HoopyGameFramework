@@ -15,12 +15,9 @@
 │　修改描述：
 └──────────────────────────────────────────────┘
 */
-using UnityEngine;
-
 namespace HoopyGame{
 
-    [CreateAssetMenu(fileName = "DBug/Config/AuidoConfig")]
-    public class AudioConfig : ScriptableObject
+    public class AudioConfig
     {
         public float bgmAudioVolume = .8f;
         public float effAudioVolume = .75f;

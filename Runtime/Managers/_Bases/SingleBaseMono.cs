@@ -28,12 +28,12 @@ public class SingleBaseMono<T> : MonoBehaviour where T : SingleBaseMono<T>
 
     private static T CreateInstance()
     {
-        // 寻找场景中已经存在的实例
         T instance = FindAnyObjectByType<T>();
         // 如果场景中不存在，则创建一个新的游戏对象
-        if (instance == null && !_inited)
+        if (!_inited && instance == null)
         {
             _inited = true;
+            // 寻找场景中已经存在的实例
             GameObject singletonObject = new(typeof(T).Name);
             instance = singletonObject.AddComponent<T>();
             instance.OnInit();

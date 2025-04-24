@@ -17,123 +17,123 @@
 */
 using System.Collections.Generic;
 using UnityEngine.Events;
-using VContainer.Unity;
-public class EventMgr
+namespace HoopyGame
 {
-    enum EventType
+    public class EventMgr
     {
-        NoParament,
-        OneParament
-    }
-    private Dictionary<string, UnityAction> _noParameterEventDir;
-    private Dictionary<string, UnityAction<object>> _oneParameterDir;
-    //这里可以根据自己的需求增加新的map
-
-    public EventMgr()
-    {
-        DebugUtils.Print("初始化事件管理器..");
-
-        _noParameterEventDir = new Dictionary<string, UnityAction>();
-        _oneParameterDir = new Dictionary<string, UnityAction<object>>();
-    }
-    #region 没有参数的
-    /// <summary>
-    /// 添加一个没有参数的订阅
-    /// </summary>
-    /// <param name="eventName">订阅集的名字</param>
-    /// <param name="action">事件</param>
-    public void AddEventListener(string eventName, UnityAction action)
-    {
-        if (HasEvent(eventName, EventType.NoParament))
-            _noParameterEventDir[eventName] += action;
-        else
-            _noParameterEventDir.Add(eventName, action);
-    }
-    /// <summary>
-    /// 移除一个没有参数的订阅
-    /// </summary>
-    /// <param name="eventName">订阅集的名字</param>
-    /// <param name="action">事件</param>
-    public void RemoveEventLisTener(string eventName,UnityAction action)
-    {
-        if (HasEvent(eventName, EventType.NoParament))
-            _noParameterEventDir[eventName] -= action;
-        else
-            DebugUtils.Print("尝试移除一个不存在的无参事件！", DebugType.Error);
-    }
-    
-    /// <summary>
-    /// 触发没有参数的事件
-    /// </summary>
-    /// <param name="eventName">事件名</param>
-    public void TriggerEvent(string eventName)
-    {
-        if (HasEvent(eventName, EventType.NoParament))
-            _noParameterEventDir[eventName]?.Invoke();
-        else
-            DebugUtils.Print("触发了一个不存在的无参事件！", DebugType.Warning);
-    }
-    #endregion
-    #region 一个参数的
-    /// <summary>
-    /// 添加一个参数的订阅
-    /// </summary>
-    /// <param name="eventName">订阅集的名字</param>
-    /// <param name="action">事件</param>
-    public void AddEventListener(string eventName, UnityAction<object> action)
-    {
-        if (HasEvent(eventName, EventType.OneParament))
-            _oneParameterDir[eventName] += action;
-        else
-            _oneParameterDir.Add(eventName, action);
-    }
-    /// <summary>
-    /// 移除一个参数的订阅
-    /// </summary>
-    /// <param name="eventName">订阅集的名字</param>
-    /// <param name="action">事件</param>
-    public void RemoveEventLisTener(string eventName, UnityAction<object> action)
-    {
-        if (HasEvent(eventName, EventType.OneParament))
-            _oneParameterDir[eventName] -= action;
-        else
-            DebugUtils.Print("尝试移除一个不存在的1参事件！", DebugType.Error);
-    }
-    /// <summary>
-    /// 触发一个参数的事件
-    /// </summary>
-    /// <param name="eventName">时间名</param>
-    public void TriggerEvent(string eventName,object data)
-    {
-        if (HasEvent(eventName, EventType.NoParament))
-            _oneParameterDir[eventName]?.Invoke(data);
-        else
-            DebugUtils.Print("触发了一个不存在的有参事件！", DebugType.Warning);
-    }
-
-    #endregion
-
-    public void Clear()
-    {
-        ClearEvent();
-    }
-    public void ClearEvent()
-    {
-        _noParameterEventDir.Clear();
-        _oneParameterDir.Clear();
-    }
-    //检测map是否已经包含了此类事件
-    private bool HasEvent(string eventName,EventType eventType)
-    {
-        switch (eventType)
+        enum EventType
         {
-            case EventType.NoParament:
-                return _noParameterEventDir.ContainsKey(eventName);
-            case EventType.OneParament:
-                return _oneParameterDir.ContainsKey(eventName);
-                default : return false;
+            NoParament,
+            OneParament
+        }
+        private Dictionary<string, UnityAction> _noParameterEventDir;
+        private Dictionary<string, UnityAction<object>> _oneParameterDir;
+        //这里可以根据自己的需求增加新的map
+
+        public EventMgr()
+        {
+            DebugUtils.Print("初始化事件管理器...");
+
+            _noParameterEventDir = new Dictionary<string, UnityAction>();
+            _oneParameterDir = new Dictionary<string, UnityAction<object>>();
+        }
+        #region 没有参数的
+        /// <summary>
+        /// 添加一个没有参数的订阅
+        /// </summary>
+        /// <param name="eventName">订阅集的名字</param>
+        /// <param name="action">事件</param>
+        public void AddEventListener(string eventName, UnityAction action)
+        {
+            if (HasEvent(eventName, EventType.NoParament))
+                _noParameterEventDir[eventName] += action;
+            else
+                _noParameterEventDir.Add(eventName, action);
+        }
+        /// <summary>
+        /// 移除一个没有参数的订阅
+        /// </summary>
+        /// <param name="eventName">订阅集的名字</param>
+        /// <param name="action">事件</param>
+        public void RemoveEventLisTener(string eventName, UnityAction action)
+        {
+            if (HasEvent(eventName, EventType.NoParament))
+                _noParameterEventDir[eventName] -= action;
+            else
+                DebugUtils.Print("尝试移除一个不存在的无参事件！", DebugType.Error);
+        }
+
+        /// <summary>
+        /// 触发没有参数的事件
+        /// </summary>
+        /// <param name="eventName">事件名</param>
+        public void TriggerEvent(string eventName)
+        {
+            if (HasEvent(eventName, EventType.NoParament))
+                _noParameterEventDir[eventName]?.Invoke();
+            else
+                DebugUtils.Print("触发了一个不存在的无参事件！", DebugType.Warning);
+        }
+        #endregion
+        #region 一个参数的
+        /// <summary>
+        /// 添加一个参数的订阅
+        /// </summary>
+        /// <param name="eventName">订阅集的名字</param>
+        /// <param name="action">事件</param>
+        public void AddEventListener(string eventName, UnityAction<object> action)
+        {
+            if (HasEvent(eventName, EventType.OneParament))
+                _oneParameterDir[eventName] += action;
+            else
+                _oneParameterDir.Add(eventName, action);
+        }
+        /// <summary>
+        /// 移除一个参数的订阅
+        /// </summary>
+        /// <param name="eventName">订阅集的名字</param>
+        /// <param name="action">事件</param>
+        public void RemoveEventLisTener(string eventName, UnityAction<object> action)
+        {
+            if (HasEvent(eventName, EventType.OneParament))
+                _oneParameterDir[eventName] -= action;
+            else
+                DebugUtils.Print("尝试移除一个不存在的1参事件！", DebugType.Error);
+        }
+        /// <summary>
+        /// 触发一个参数的事件
+        /// </summary>
+        /// <param name="eventName">时间名</param>
+        public void TriggerEvent(string eventName, object data)
+        {
+            if (HasEvent(eventName, EventType.NoParament))
+                _oneParameterDir[eventName]?.Invoke(data);
+            else
+                DebugUtils.Print("触发了一个不存在的有参事件！", DebugType.Warning);
+        }
+
+        #endregion
+
+        public void Clear()
+        {
+            ClearEvent();
+        }
+        public void ClearEvent()
+        {
+            _noParameterEventDir.Clear();
+            _oneParameterDir.Clear();
+        }
+        //检测map是否已经包含了此类事件
+        private bool HasEvent(string eventName, EventType eventType)
+        {
+            switch (eventType)
+            {
+                case EventType.NoParament:
+                    return _noParameterEventDir.ContainsKey(eventName);
+                case EventType.OneParament:
+                    return _oneParameterDir.ContainsKey(eventName);
+                default: return false;
+            }
         }
     }
-
-    
 }

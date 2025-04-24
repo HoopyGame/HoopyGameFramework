@@ -26,6 +26,8 @@ public class ObjectPoolMgr
 
     ObjectPoolMgr()
     {
+        DebugUtils.Print("初始化对象池管理器...");
+
         _objectPool = new Dictionary<string, SinglePoolData>();
         _allPoolDataParent = new GameObject("GameObjectPool").transform;
     }

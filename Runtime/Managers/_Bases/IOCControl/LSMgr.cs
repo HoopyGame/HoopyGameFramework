@@ -17,13 +17,12 @@
 */
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace HoopyGame
+namespace HoopyGame.Manager
 {
-    public class LifetimeScopeHelper : SingleBaseMono<LifetimeScopeHelper>
+    public class LSMgr : SingleBaseMono<LSMgr>
     {
         private Dictionary<Type, LifetimeScope> _lifetimeScopes;
 
@@ -39,27 +38,21 @@ namespace HoopyGame
         /// <param name="t"></param>
         /// <returns></returns>
         public T Get<T>(Type t) where T : class
-        {
-            return GetLifetimeScopeContainer(t).Resolve<T>();
-        }
+            => GetLifetimeScopeContainer(t).Resolve<T>();
         /// <summary>
         /// 直接从GameLifetimeScope里寻找
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T GetFromeGLS<T>()
-        {
-            return GetLifetimeScopeContainer(typeof(GameLifetimeScope)).Resolve<T>();
-        }
+        public T GetFromeGLS<T>() 
+            => GetLifetimeScopeContainer(typeof(GameLifetimeScope)).Resolve<T>();
         /// <summary>
         /// 获取当类型作用域
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
         public IObjectResolver GetLifetimeScopeContainer(Type t)
-        {
-            return GetLifetimeScope(t).Container;
-        }
+            => GetLifetimeScope(t).Container;
         /// <summary>
         /// 获取当类型作用于
         /// </summary>

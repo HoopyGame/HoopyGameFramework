@@ -8,25 +8,19 @@
 │　Copyright(C) 2025 by HoopyGameStudio
 │　描   述*：
 │　创 建 人*：Hoopy
-│　创建时间：2025-03-01 15:35:14
+│　创建时间：2025-01-01 00:00:00
 └──────────────────────────────────────────────┘
 ┌──────────────────────────────────────────────┐
 │　修 改 人：
 │　修改描述：
 └──────────────────────────────────────────────┘
 */
+using UnityEngine;
 
-using HoopyGame.Core;
-
-namespace HoopyGame.UIF
+namespace HoopyGame
 {
-    public class UIArchitecture : HGArchitecture<UIArchitecture>
-    {
-        public override IOCContainer AppointParentIOC() => null;
-        protected override void Init()
-        {
-            this.RegisterUtility(new LeastResentlyUsedUtility(5));
+	public class BGMController : MonoBehaviour
+	{
 
-        }
-    }
+	}
 }

@@ -1,16 +1,17 @@
-using System.Collections.Generic;
 using UnityEngine;
 using HoopyGame.UIF;
+using HoopyGame;
+using HoopyGame.Manager;
 
 public class NUR : MonoBehaviour
 {
-    private PQManager<PQBase> pqManager;
+    //private PQManager<PQBase> pqManager;
 
-    private readonly List<int> ints = new() { 2,4,2,1,2,2,1 };
+    //private readonly List<int> ints = new() { 2,4,2,1,2,2,1 };
 
     private void Awake()
     {
-        pqManager = new PQManager<PQBase>(5);
+        //pqManager = new PQManager<PQBase>(5);
     }
     void Start()
     {
@@ -32,14 +33,17 @@ public class NUR : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            UIMgr.Instance.OpenUI("pan", UIType.Panel,new PanelOneData { name = "张三" }, () =>
+            LSMgr.Instance.GetFromeGLS<UIMgr>().OpenUI("pan", UIType.Panel, new PanelOneData { name = "张三" }, () =>
             {
                 Debug.Log("关闭这个UI");
             });
         }
         if(Input.GetKeyUp(KeyCode.B))
         {
-            UIMgr.Instance.OpenUI("pop", UIType.Popup);
+            LSMgr.Instance.GetFromeGLS<UIMgr>().OpenUI("pop", UIType.Popup, new PanelOneData { name = "张三" }, () =>
+            {
+                Debug.Log("关闭这个UI");
+            });
         }
     }
 }

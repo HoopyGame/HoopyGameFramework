@@ -15,14 +15,14 @@
 │　修改描述：
 └──────────────────────────────────────────────┘
 */
-using HoopyGame.Core;
+using HoopyGame.Manager;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace HoopyGame.UIF
 {
-    public abstract class BaseUI : MonoBehaviour, IController
+    public abstract class BaseUI : MonoBehaviour
     {
         private IUIDataBase _data;
         protected IUIDataBase Data { get { return _data; } }//数据
@@ -32,8 +32,6 @@ namespace HoopyGame.UIF
         public UIType uiType;                               //UI类型 新的类型要在这里增加
 
         private Action _closeBtnEvent;                      //关闭触发的事件
-
-        public virtual IHGArchitecture GetHGArchitecture() => UIArchitecture.Instance;
 
         /// <summary>
         /// 是否已经初始化
@@ -70,7 +68,7 @@ namespace HoopyGame.UIF
         /// </summary>
         public virtual void Close(bool isDestroy = false)
         {
-            UIMgr.Instance.CloseUI(this, uiType, isDestroy);
+            LSMgr.Instance.GetFromeGLS<UIMgr>().CloseUI(this, uiType, isDestroy);
         }
 
         public void InitCloseCallback(Action act)

@@ -28,6 +28,10 @@ namespace HoopyGame
     /// </summary>
     public class AssetMgr
     {
+        AssetMgr()
+        {
+            DebugUtils.Print("初始化资源管理器...");
+        }
         /// <summary>
         /// 获取一个Package
         /// </summary>
@@ -38,8 +42,7 @@ namespace HoopyGame
             if (string.IsNullOrEmpty(packageName)) packageName = HotAssetConfig.PackageName;
             return YooAssets.TryGetPackage(packageName);
         }
-        
-        //Assets
+        //Assets  --以下内容可以使用工厂模式配置
         /// <summary>
         /// 同步加载一个资源
         /// <summary>
@@ -68,30 +71,102 @@ namespace HoopyGame
             await assetHandle;
             if (assetHandle.Status != EOperationStatus.Succeed)
             {
-                throw new MissingReferenceException($"没有在包内找到该资源{assetName}");
+                throw new MissingReferenceException($"没有在包内找到类型为<{typeof(T)}>的资源\"{assetName}\"");
             }
             return assetHandle.AssetObject as T;
+        }
+        /// <summary>
+        /// 同步加载一个子资源
+        /// </summary>
+        /// <typeparam name="T">资源类型</typeparam>
+        /// <param name="parentTextureName">父资源名</param>
+        /// <param name="subSpriteName">子资源名</param>
+        /// <param name="packageName">包名</param>
+        /// <returns>T</returns>
+        /// <exception cref="MissingReferenceException"></exception>
+        public T LoadSubAssetSync<T>(string parentTextureName, string subSpriteName, string packageName = HotAssetConfig.PackageName) where T:Object
+        {
+            SubAssetsHandle subAssetHandle = GetPacakge(packageName).LoadSubAssetsSync<T>(parentTextureName);
+            if (subAssetHandle.Status != EOperationStatus.Succeed)
+            {
+                throw new MissingReferenceException($"没有在<{parentTextureName}>资源内找到<{subSpriteName}>子资源");
+            }
+            return subAssetHandle.GetSubAssetObject<T>(subSpriteName);
+        }
+        /// <summary>
+        /// 异步加载一个子资源
+        /// </summary>
+        /// <typeparam name="T">资源类型</typeparam>
+        /// <param name="parentTextureName">父资源名</param>
+        /// <param name="subSpriteName">子资源名</param>
+        /// <param name="packageName">包名</param>
+        /// <returns>T</returns>
+        /// <exception cref="MissingReferenceException"></exception>
+        public async UniTask<T> LoadSubAssetAsync<T>(string parentTextureName, string subSpriteName, string packageName = HotAssetConfig.PackageName)where T:Object
+        {
+            SubAssetsHandle subah = GetPacakge(packageName).LoadSubAssetsAsync<T>(parentTextureName);
+            await subah;
+            if (subah.Status != EOperationStatus.Succeed)
+            {
+                throw new MissingReferenceException($"没有在<{parentTextureName}>资源内找到<{subSpriteName}>子资源");
+            }
+            return subah.GetSubAssetObject<T>(subSpriteName);
+        }
+        /// <summary>
+        /// 同步资源包内所有对象加载（只要填写任何一个资源即可）
+        /// 如配置表等，可以一开始就全部加载上
+        /// </summary>
+        /// <typeparam name="T">资源类型</typeparam>
+        /// <param name="anyAssetName">任意一个资源名字</param>
+        /// <returns>返回当前资源的集合</returns>
+        /// <exception cref="MissingReferenceException"></exception> 
+        public T[] LoadAllAssetsSync<T>(string anyAssetName, string packageName = HotAssetConfig.PackageName) where T : Object
+        {
+            AllAssetsHandle allah = GetPacakge(packageName).LoadAllAssetsSync<T>(anyAssetName);
+            if (allah.Status != EOperationStatus.Succeed)
+            {
+                throw new MissingReferenceException($"没有找到{anyAssetName}资源");
+            }
+            return allah.AllAssetObjects as T[];
+        }
+        /// <summary>
+        /// 异步资源包内所有对象加载（只要填写任何一个资源即可）
+        /// 如配置表等，可以一开始就全部加载上
+        /// </summary>
+        /// <typeparam name="T">资源类型</typeparam>
+        /// <param name="anyAssetName">任意一个资源名字</param>
+        /// <returns>返回当前资源的集合</returns>
+        /// <exception cref="MissingReferenceException"></exception> 
+        public async UniTask<T[]> LoadAllAssetsAsync<T>(string anyAssetName, string packageName = HotAssetConfig.PackageName) where T : Object
+        {
+            AllAssetsHandle allah = GetPacakge(packageName).LoadAllAssetsAsync<T>(anyAssetName);
+            await allah;
+            if (allah.Status != EOperationStatus.Succeed)
+            {
+                throw new MissingReferenceException($"没有找到{anyAssetName}资源");
+            }
+            return allah.AllAssetObjects as T[];
         }
 
         //Script
         /// <summary>
-        /// 加载一个热更脚本DLL（.byte-->TextAsset）
+        /// 同步加载一个热更脚本DLL（.byte-->TextAsset）
         /// textAsset.bytes 二进制数据
         /// textAsset.text 文本数据
         /// </summary>
-        /// <param name="assetName">脚本名称</param>
-        /// <returns>返回该脚本的TextAsset</returns>
-        /// <exception cref="MissingReferenceException"></exception>
-        public async UniTask<TextAsset> LoadTextAsset(string textAssetName)
-        {
-            AssetHandle ah = YooAssets.LoadAssetAsync<TextAsset>(textAssetName);
-            await ah;
-            if (ah.Status != EOperationStatus.Succeed)
-            {
-                throw new MissingReferenceException($"没有在包内找到{textAssetName}资源");
-            }
-            return ah.AssetObject as TextAsset;
-        }
+        /// <param name="textAssetName">资源名</param>
+        /// <returns>TextAsset</returns>
+        public TextAsset LoadTextAssetSync(string textAssetName, string packageName = HotAssetConfig.PackageName)
+            => LoadAssetSync<TextAsset>(textAssetName, packageName);
+        /// <summary>
+        /// 异步加载一个热更脚本DLL（.byte-->TextAsset）
+        /// textAsset.bytes 二进制数据
+        /// textAsset.text 文本数据
+        /// </summary>
+        /// <param name="textAssetName">资源名</param>
+        /// <returns>TextAsset</returns>
+        public async UniTask<TextAsset> LoadTextAsset(string textAssetName, string packageName = HotAssetConfig.PackageName)
+            => await LoadAssetAsync<TextAsset>(textAssetName, packageName);
 
         //GameObject
         /// <summary>
@@ -99,32 +174,16 @@ namespace HoopyGame
         /// </summary>
         /// <param name="assetName">物体名字</param>
         /// <returns>返回该物体</returns>
-        /// <exception cref="MissingReferenceException"></exception>
-        public GameObject LoadAssetSync(string assetName, string packageName = HotAssetConfig.PackageName)
-        {
-            AssetHandle assetHandle = GetPacakge(packageName).LoadAssetAsync<GameObject>(assetName);
-            if (assetHandle.Status != EOperationStatus.Succeed)
-            {
-                throw new MissingReferenceException($"没有在包内找到{assetName}资源");
-            }
-            return assetHandle.AssetObject as GameObject;
-        }
+        public GameObject LoadGameObjectSync(string assetName, string packageName = HotAssetConfig.PackageName)
+            => LoadAssetSync<GameObject>(assetName, packageName);
         /// <summary>
         /// 异步加载一个GameObject
         /// </summary>
         /// <param name="assetName">物体名字</param>
         /// <returns>返回该物体</returns>
         /// <exception cref="MissingReferenceException"></exception>
-        public async UniTask<GameObject> LoadAssetAsync(string assetName, string packageName = HotAssetConfig.PackageName)
-        {
-            AssetHandle assetHandle = GetPacakge(packageName).LoadAssetAsync<GameObject>(assetName);
-            await assetHandle;
-            if (assetHandle.Status != EOperationStatus.Succeed)
-            {
-                throw new MissingReferenceException($"没有在包内找到{assetName}资源");
-            }
-            return assetHandle.AssetObject as GameObject;
-        }
+        public async UniTask<GameObject> LoadGameObjectAsync(string assetName, string packageName = HotAssetConfig.PackageName)
+            => await LoadAssetAsync<GameObject>(assetName, packageName);
 
         //Sprite
         /// <summary>
@@ -135,14 +194,7 @@ namespace HoopyGame
         /// <returns>返回Sprite</returns>
         /// <exception cref="MissingReferenceException"></exception>
         public Sprite LoadSubSpriteAssetSync(string parentTextureName, string subSpriteName, string packageName = HotAssetConfig.PackageName)
-        {
-            SubAssetsHandle subAssetHandle = GetPacakge(packageName).LoadSubAssetsSync<Sprite>(parentTextureName);
-            if (subAssetHandle.Status != EOperationStatus.Succeed)
-            {
-                throw new MissingReferenceException($"没有在{parentTextureName}图集内找到{subSpriteName}图片");
-            }
-            return subAssetHandle.GetSubAssetObject<Sprite>(subSpriteName);
-        }
+            => LoadSubAssetSync<Sprite>(parentTextureName, subSpriteName, packageName);
         /// <summary>
         /// 异步从一个图集里加载某个图片
         /// </summary>
@@ -150,18 +202,10 @@ namespace HoopyGame
         /// <param name="subSpriteName">图片</param>
         /// <returns>返回Sprite</returns>
         /// <exception cref="MissingReferenceException"></exception>
-        public async UniTask<Sprite> LoadSubSpriteAssetAsync(string parentTextureName, string subSpriteName,string packageName=HotAssetConfig.PackageName)
-        {
-            SubAssetsHandle subah = GetPacakge(packageName).LoadSubAssetsAsync<Sprite>(parentTextureName);
-            await subah;
-            if (subah.Status != EOperationStatus.Succeed)
-            {
-                throw new MissingReferenceException($"没有在{parentTextureName}图集内找到{subSpriteName}图片");
-            }
-            return subah.GetSubAssetObject<Sprite>(subSpriteName);
-        }
-        
-        //场景
+        public async UniTask<Sprite> LoadSubSpriteAssetAsync(string parentTextureName, string subSpriteName, string packageName = HotAssetConfig.PackageName)
+            => await LoadSubAssetAsync<Sprite>(parentTextureName, subSpriteName, packageName);
+
+        //Scene
         /// <summary>
         /// 同步加载一个场景
         /// </summary>
@@ -169,9 +213,9 @@ namespace HoopyGame
         /// <param name="isAdditive">是否叠加场景</param>
         /// <returns></returns>
         /// <exception cref="MissingReferenceException"></exception>
-        public void LoadSceneSync(string sceneName, bool isAdditive)
+        public void LoadSceneSync(string sceneName, bool isAdditive, string packageName = HotAssetConfig.PackageName)
         {
-            SceneHandle sceneHandle = YooAssets.LoadSceneSync(sceneName, isAdditive ? LoadSceneMode.Additive : LoadSceneMode.Single);
+            SceneHandle sceneHandle = GetPacakge(packageName).LoadSceneSync(sceneName, isAdditive ? LoadSceneMode.Additive : LoadSceneMode.Single);
             if (sceneHandle.Status != EOperationStatus.Succeed)
             {
                 throw new MissingReferenceException($"没有找到场景{sceneName}");
@@ -185,7 +229,7 @@ namespace HoopyGame
         /// <param name="isAdditive">是否叠加场景</param>
         /// <returns></returns>
         /// <exception cref="MissingReferenceException"></exception>
-        public async UniTaskVoid LoadSceneAsync(string sceneName,bool isAdditive)
+        public async UniTaskVoid LoadSceneAsync(string sceneName, bool isAdditive)
         {
             SceneHandle sceneHandle = YooAssets.LoadSceneAsync(sceneName, isAdditive ? LoadSceneMode.Additive : LoadSceneMode.Single);
             await sceneHandle;
@@ -195,26 +239,6 @@ namespace HoopyGame
             }
             UnloadUnusedAssets();
         }
-        
-        //所有資源
-        /// <summary>
-        /// 异步资源包内所有对象加载（只要填写任何一个资源即可）
-        /// 如配置表等，可以一开始就全部加载上
-        /// </summary>
-        /// <typeparam name="T">资源类型</typeparam>
-        /// <param name="anyAssetName">任意一个资源名字</param>
-        /// <returns>返回当前资源的集合</returns>
-        /// <exception cref="MissingReferenceException"></exception> 
-        public async UniTask<T[]> LoadAllAssetsAsync<T>(string anyAssetName) where T : Object
-        {
-            AllAssetsHandle allah = YooAssets.LoadAllAssetsAsync<T>(anyAssetName);
-            await allah;
-            if (allah.Status != EOperationStatus.Succeed)
-            {
-                throw new MissingReferenceException($"没有找到{anyAssetName}资源");
-            }
-            return allah.AllAssetObjects as T[];
-        }
 
         //help
         /// <summary>
@@ -222,46 +246,34 @@ namespace HoopyGame
         /// </summary>
         /// <param name="tag">Tag</param>
         /// <returns>标签下的所有文件信息</returns>
-        public AssetInfo[] GetAssetInfosByTag(string tag)
-        {
-            return YooAssets.GetAssetInfos(tag);
-        }
+        public AssetInfo[] GetAssetInfosByTag(string tag, string packageName = HotAssetConfig.PackageName)
+            =>GetPacakge(packageName).GetAssetInfos(tag);
         /// <summary>
         /// 返回当前资源是否有更新
         /// </summary>
         /// <param name="assetName">资源名字</param>
         /// <returns>是否有更新</returns>
-        public bool IsNeedDownloadFromRemote(string assetName)
-        {
-            return YooAssets.IsNeedDownloadFromRemote(assetName);
-        }
+        public bool IsNeedDownloadFromRemote(string assetName, string packageName = HotAssetConfig.PackageName)
+            =>GetPacakge(packageName).IsNeedDownloadFromRemote(assetName);
 
         //Relese
         /// <summary>
         /// 卸载所有引用计数为零的资源包。
         /// 可以在切换场景之后调用资源释放方法或者写定时器间隔时间去释放。
         /// </summary>
-        public void UnloadUnusedAssets()
-        {
-            var package = YooAssets.GetPackage("DefaultPackage");
-            package.UnloadUnusedAssetsAsync();
-        }
+        public void UnloadUnusedAssets(string packageName = HotAssetConfig.PackageName)
+            => GetPacakge(packageName).UnloadUnusedAssetsAsync();
         /// <summary>
         /// 强制卸载所有资源包，该方法请在合适的时机调用
         /// 注意：Package在销毁的时候也会自动调用该方法
         /// </summary>
-        public void ForceUnloadAllAssets(string packageName)
-        {
-            YooAssets.GetPackage(packageName).UnloadAllAssetsAsync();
-        }
+        public void ForceUnloadAllAssets(string packageName = HotAssetConfig.PackageName)
+            =>GetPacakge(packageName).UnloadAllAssetsAsync();
         /// <summary>
         /// 尝试卸载指定的资源对象
         /// 注意：如果该资源还在被使用，该方法会无效
         /// </summary>
-        public void TryUnloadUnusedAsset(string assetName, string packageName = null)
-        {
-            GetPacakge(packageName).TryUnloadUnusedAsset(assetName);
-        }
-
+        public void TryUnloadUnusedAsset(string assetName, string packageName = HotAssetConfig.PackageName)
+            =>GetPacakge(packageName).TryUnloadUnusedAsset(assetName);
     }
 }

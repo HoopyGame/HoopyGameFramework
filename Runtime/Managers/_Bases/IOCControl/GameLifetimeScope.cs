@@ -35,6 +35,7 @@ namespace HoopyGame
 
             //--需要Mono的单例
             builder.Register<AudioMgr>(Lifetime.Singleton);
+            builder.Register<UIMgr>(Lifetime.Singleton);
         }
     }
 }

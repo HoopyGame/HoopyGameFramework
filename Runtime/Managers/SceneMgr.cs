@@ -21,10 +21,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using VContainer;
-using HoopyGame.UIF;
-using VContainer.Unity;
 using HoopyGame;
+using VContainer;
+using HoopyGame.Manager;
 
 public class SceneMgr : SingleBaseMono<SceneMgr>
 {
@@ -34,7 +33,9 @@ public class SceneMgr : SingleBaseMono<SceneMgr>
 
     private float _loadProgress;
 
-
+    [Inject]
+    private readonly UIMgr _uimgr;
+    
     /// <summary>
     /// 下一个要加载的场景
     /// </summary>
@@ -47,7 +48,7 @@ public class SceneMgr : SingleBaseMono<SceneMgr>
     }
     private void InitComponent()
     {
-        m_loadSceneUIPanel = UIMgr.Instance.UIRoot.FindTransFromChild("LoadingPanel");
+        m_loadSceneUIPanel = _uimgr.UIRoot.FindTransFromChild("LoadingPanel");
         m_loadSceenProgress_Sld = m_loadSceneUIPanel.FindComponentFromChild<Slider>("LoadSceenProgress_Sld");
         m_loadSceneProgress_Txt = m_loadSceneUIPanel.FindComponentFromChild<TextMeshProUGUI>("LoadSceenProgress_Txt");
     }
@@ -62,7 +63,7 @@ public class SceneMgr : SingleBaseMono<SceneMgr>
     {
         //场景同步加载
         SceneManager.LoadScene(sceneName, loadSceneMode);
-        LifetimeScopeHelper.Instance.Get<EventMgr>(typeof(GameLifetimeScope))
+        LSMgr.Instance.GetFromeGLS<EventMgr>()
             .TriggerEvent(MsgStrMgr.Local.LoadSceneEvent);
         //加载完成过后 才会去执行fun
         fun?.Invoke();
@@ -71,7 +72,7 @@ public class SceneMgr : SingleBaseMono<SceneMgr>
     {
         //场景同步加载
         SceneManager.LoadScene(sceneindex, loadSceneMode);
-        LifetimeScopeHelper.Instance.Get<EventMgr>(typeof(GameLifetimeScope))
+        LSMgr.Instance.GetFromeGLS<EventMgr>()
             .TriggerEvent(MsgStrMgr.Local.LoadSceneEvent);
         //加载完成过后 才会去执行fun
         fun?.Invoke();

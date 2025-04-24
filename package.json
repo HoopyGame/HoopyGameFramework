@@ -2,7 +2,7 @@
   "name": "com.hoopygame.hoopygameframework",
   "displayName": "HoopyGame Framework",
   "description": "HoopyGameStudio Unity Framework",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": {
     "name": "HoopyGame.Hoopy",
     "email": "dhaopi@163.com"
@@ -13,49 +13,59 @@
   ],
   "samples": [
     {
-      "displayName": "Architecture",
+      "displayName": "(Demo)Architecture",
       "description": "Architecture",
-      "path": "Samples~/Architecture"
+      "path": "Samples~/(Demo)Architecture"
     },
     {
-      "displayName": "NUR",
-      "description": "UI\u7684\u4f7f\u7528\u65b9\u6cd5",
-      "path": "Samples~/NUR"
+      "displayName": "(Demo)NUR",
+      "description": "UI最久未使用算法的Demo",
+      "path": "Samples~/(Demo)NUR"
     },
     {
-      "displayName": "Gifts",
-      "description": "\u793c\u5305\u7684\u4f7f\u7528\u65b9\u6cd5",
-      "path": "Samples~/Gifts"
+      "displayName": "(FolderTemplete)AssetsPackage",
+      "description": "预制的方便进行资源存储和打包的文件夹",
+      "path": "Samples~/(FolderTemplete)AssetsPackage"
     },
     {
-      "displayName": "Redpoint",
-      "description": "\u7ea2\u70b9\u7684\u4f7f\u7528\u65b9\u6cd5",
-      "path": "Samples~/Redpoint"
+      "displayName": "(Plugin)ClickEffect",
+      "description": "点击效果",
+      "path": "Samples~/(Plugin)ClickEffect"
     },
     {
-      "displayName": "AssetsPackage",
-      "description": "\u9884\u5236\u8d44\u6e90\u6587\u4ef6\u5939",
-      "path": "Samples~/AssetsPackage"
+      "displayName": "(Plugin)CommandMode",
+      "description": "命令模式",
+      "path": "Samples~/(Plugin)CommandMode"
     },
     {
-      "displayName": "ClickEffect",
-      "description": "\u70b9\u51fb\u6548\u679c",
-      "path": "Samples~/ClickEffect"
+      "displayName": "(Plugin)Examine",
+      "description": "考核功能，单选多选判断",
+      "path": "Samples~/(Plugin)Examine"
     },
     {
-      "displayName": "Examine",
-      "description": "\u8003\u6838\uff08\u5355\u9009\u591a\u9009\u5224\u65ad\uff09",
-      "path": "Samples~/Examine"
+      "displayName": "(Plugin)Gifts",
+      "description": "礼包抽奖，转盘，签到",
+      "path": "Samples~/(Plugin)Gifts"
     },
     {
-      "displayName": "CommandMode",
-      "description": "\u547d\u4ee4\u6a21\u5f0f",
-      "path": "Samples~/CommandMode"
+      "displayName": "(Plugin)Guide",
+      "description": "引导",
+      "path": "Samples~/(Plugin)Guide"
     },
     {
-      "displayName": "PlayerContorller",
-      "description": "\u7b2c\u4e00\u4eba\u79f0\u63a7\u5236\u5668",
-      "path": "Samples~/PlayerContorller"
+      "displayName": "(Plugin)HotUpdate",
+      "description": "热更新资源",
+      "path": "Samples~/(Plugin)HotUpdate"
+    },
+    {
+      "displayName": "(Plugin)Redpoint",
+      "description": "红点",
+      "path": "Samples~/(Plugin)Redpoint"
+    },
+    {
+      "displayName": "(Templete)PlayerContorller",
+      "description": "简单的第一人称控制器",
+      "path": "Samples~/(Templete)PlayerContorller"
     }
   ]
 }

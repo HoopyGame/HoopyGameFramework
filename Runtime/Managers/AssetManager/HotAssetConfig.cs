@@ -15,8 +15,6 @@
 │　修改描述：
 └──────────────────────────────────────────────┘
 */
-using UnityEngine;
-
 namespace HoopyGame
 {
     public class HotAssetConfig
@@ -27,9 +25,9 @@ namespace HoopyGame
         public static string fallbackHostServer = "http://127.0.0.1/CDN/";       //备用远端资源地址
         
         public static string GetDefaultHostServer
-            => $"{GetPlatform}/{PackageName}";
+            => $"{defaultHostServer}{GetPlatform}/{PackageName}";
         public static string GetFallbackHostServer
-            => $"{GetPlatform}/{PackageName}";
+            => $"{fallbackHostServer}{GetPlatform}/{PackageName}";
 
         /// <summary>
         /// 获取平台

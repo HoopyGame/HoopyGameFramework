@@ -15,13 +15,13 @@
 │　修改描述：
 └──────────────────────────────────────────────┘
 */
+using HoopyGame.Manager;
 using System.Collections.Generic;
 using UnityEngine;
-using HoopyGame.Core;
 
 namespace HoopyGame.UIF
 {
-    public class LeastResentlyUsedUtility : IUtility
+    public class LeastResentlyUsedUtility
     {
         private class Content
         {
@@ -39,7 +39,6 @@ namespace HoopyGame.UIF
         private readonly List<string> closedUIAfter;
         private readonly int _closeUIThreshold;                                   //多少次未再次打开就销毁
         private BaseUI tmpBaseui;
-
 
         public LeastResentlyUsedUtility(int closeUIThreshold)
         {
@@ -90,7 +89,7 @@ namespace HoopyGame.UIF
             {
                 tmpBaseui = _hideUiMap[item].baseUI;
 
-                UIMgr.Instance.RemoveUIFromUIMap(tmpBaseui.name, tmpBaseui.uiType);
+                LSMgr.Instance.GetFromeGLS<UIMgr>().RemoveUIFromUIMap(tmpBaseui.name, tmpBaseui.uiType);
                 _hideUiMap.Remove(item);
                 Object.DestroyImmediate(tmpBaseui.gameObject);
             }
