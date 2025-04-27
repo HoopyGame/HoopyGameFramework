@@ -25,7 +25,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using HoopyGame.UIF;
 
-namespace HoopyGame
+namespace HoopyGame.Manager
 {
     public class UIMgr
     {
@@ -48,7 +48,7 @@ namespace HoopyGame
         private Dictionary<string, BasePopup> _openingPopupUI;                        //目前打开着的Popup
 
         private LeastResentlyUsedUtility _notUsedResentlyUI;                            //最久未使用算法
-        private UIFactory _uiFactory;
+        private UILoador _uiLoador;
         //--这里不用担心，这是多线程才可能会遇到的问题  
         //private void Awake()
         //{
@@ -68,7 +68,7 @@ namespace HoopyGame
             InitUIMap();
             _notUsedResentlyUI = new LeastResentlyUsedUtility(5);
             //实例工厂
-            _uiFactory = new UIFactory();
+            _uiLoador = new UILoador();
             try
             {
                 //这里默认是RootUI
@@ -199,7 +199,7 @@ namespace HoopyGame
             }
             else
             {
-                baseUI = _uiFactory.LoadUI(uiName, uiParent);
+                baseUI = _uiLoador.LoadUI(uiName, uiParent);
                 baseUI.Open(data);
                 _totalUIMap[uiType].Add(uiName, baseUI);
             }
@@ -217,7 +217,7 @@ namespace HoopyGame
             }
             else
             {
-                baseUI = await _uiFactory.LoadUIAsync(uiName, uiParent);
+                baseUI = await _uiLoador.LoadUIAsync(uiName, uiParent);
                 baseUI.Open(data);
                 _totalUIMap[uiType].Add(uiName, baseUI);
             }

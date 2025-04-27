@@ -17,7 +17,7 @@
 */
 using UnityEngine;
 using UnityEngine.Audio;
-namespace HoopyGame
+namespace HoopyGame.Manager
 {
     public class AudioMgr
     {
@@ -26,22 +26,19 @@ namespace HoopyGame
         private AudioConfig _audioConfig;
 
         private AudioMixer _audioMixer;
+        public AudioMixer Mixer => _audioMixer;
         private AudioListener _audioListener;
+
         //BGM-SFX
         private BGMController _bgmController;
         private SFXController _sfxConftoller;
-
-
-        private AudioMixerGroup _bgmAudioMixerGroup;
-        private AudioMixerGroup _effAudioMixerGroup;
 
         //PlayerPrefs
         private const string BGMAudioVolume = "BGM_Audio_Volume";
         private const string EffAudioVolume = "EFF_Audio_Volume";
 
-        //根据需要自己适配新的Audio
-        private AudioSource _bgmAudio;
-        private AudioSource _effAudio;
+        public BGMController BGM => _bgmController;
+        public SFXController SFX => _sfxConftoller;
 
         AudioMgr()
         {
@@ -56,92 +53,24 @@ namespace HoopyGame
         {
             //在这里修改加载方式
             _audioConfig = new AudioConfig();
-            _audioMixer = Resources.Load<AudioMixer>("MixerManager");
+            _audioMixer = LSMgr.Instance.GetFromeGLS<AssetMgr>().LoadAssetSync<AudioMixer>("MixerManager");
+            _audioListener = Camera.main.GetComponent<AudioListener>();
 
-            if(_audioMixer)
-            {
-                _bgmAudioMixerGroup = _audioMixer.FindMatchingGroups("BGM_Group")[0];
-                _effAudioMixerGroup = _audioMixer.FindMatchingGroups("Eff_Group")[0];
-            }
+            _bgmController = new BGMController(_audioMixer.FindMatchingGroups("BGM")[0], _audioConfig);
+            _sfxConftoller = new SFXController(_audioMixer.FindMatchingGroups("SFX")[0], _audioConfig);
 
-            //BGM
-            _bgmAudio = CreateAudioObject("BGM_Audio");
-            //EffAudio
-            _effAudio = CreateAudioObject("EFF_Audio");
-            if (_audioMixer != null)
-            {
-                _bgmAudio.outputAudioMixerGroup = _audioMixer.FindMatchingGroups("Bgm_Group")[0];
-                _effAudio.outputAudioMixerGroup = _audioMixer.FindMatchingGroups("Eff_Group")[0];
-            }
         }
         //初始化数据
         private void InitData()
         {
-            _bgmAudio.volume = PlayerPrefs.GetFloat(BGMAudioVolume, _audioConfig.bgmAudioVolume);
-            _effAudio.volume = PlayerPrefs.GetFloat(EffAudioVolume, _audioConfig.effAudioVolume);
-        }
-
-        #region 播放音频
-        /// <summary>
-        /// 通过一个Clip去播放一个BGM
-        /// </summary>
-        /// <param name="clip"></param>
-        public void PlayBGMAudioByClip(AudioClip clip, bool isLoop)
-        {
-            _bgmAudio.clip = clip;
-            _bgmAudio.loop = isLoop;
-            _bgmAudio.Play();
-        }
-        /// <summary>
-        /// 通过一个Clip去播放一个Eff
-        /// </summary>
-        /// <param name="clip"></param>
-        public void PlayEffAudioByClip(AudioClip clip)
-        {
-            _effAudio.clip = clip;
-            _effAudio.Play();
-        }
-        #endregion
-        #region 设置音频大小
-        /// <summary>
-        /// 设置BGM的音量 0-100
-        /// </summary>
-        /// <param name="volume"></param>
-        public void SetBGMAudioVolume(int volume)
-        {
-            DebugUtils.Print(AudioVolumeMapping(volume));
-        }
-        /// <summary>
-        /// 设置Eff的音量 0-100
-        /// </summary>
-        /// <param name="voluem"></param>
-        public void SetEffAduioVolume(int voluem)
-        {
 
         }
-        //音量映射0-100映射到 - 80-10
-        private int AudioVolumeMapping(int volume)
-        {
-            // 先将0-100线性值转换为0-1
-            float linear = volume / 100f;
-            // 然后使用对数映射（更符合音频特性）
-            return (int)Mathf.Lerp(-80f, 20f, Mathf.Pow(linear, 0.5f));
-        }
-        #endregion
-
         /// <summary>
         /// 保存声音大小等参数
         /// </summary>
         public void SaveVolume()
         {
-            PlayerPrefs.SetFloat(BGMAudioVolume, _bgmAudio.volume);
-            PlayerPrefs.SetFloat(EffAudioVolume, _effAudio.volume);
-        }
-        private AudioSource CreateAudioObject(string objectName)
-        {
-            var Aduio = new GameObject(objectName);
-            //Aduio.transform.SetParent(transform);
-            return Aduio.AddComponent<AudioSource>();
+
         }
     }
 }

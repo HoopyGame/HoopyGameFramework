@@ -21,7 +21,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using HoopyGame;
 using VContainer;
 using HoopyGame.Manager;
 

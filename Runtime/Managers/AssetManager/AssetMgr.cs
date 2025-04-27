@@ -20,7 +20,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using YooAsset;
 
-namespace HoopyGame
+namespace HoopyGame.Manager
 {
     /// <summary>
     /// 开启可寻址，可以模糊查找 如:HoopyGame.png可以写 HoopyGame|HoopyGame.png</summary>
@@ -28,9 +28,12 @@ namespace HoopyGame
     /// </summary>
     public class AssetMgr
     {
-        AssetMgr()
+        readonly LoadAssetFactory _loadAssetFactory;
+        //AssetMgr() { }
+        public AssetMgr(LoadAssetFactory loadAssetFactory)
         {
-            DebugUtils.Print("初始化资源管理器...");
+            _loadAssetFactory = loadAssetFactory;
+            DebugUtils.Print($"初始化资源管理器,加载方式{_loadAssetFactory}...");
         }
         /// <summary>
         /// 获取一个Package
@@ -42,7 +45,7 @@ namespace HoopyGame
             if (string.IsNullOrEmpty(packageName)) packageName = HotAssetConfig.PackageName;
             return YooAssets.TryGetPackage(packageName);
         }
-        //Assets  --以下内容可以使用工厂模式配置
+        //Assets
         /// <summary>
         /// 同步加载一个资源
         /// <summary>
@@ -50,14 +53,7 @@ namespace HoopyGame
         /// <returns>返回资源</returns>
         /// <exception cref="MissingReferenceException"></exception>
         public T LoadAssetSync<T>(string assetName, string packageName = HotAssetConfig.PackageName) where T : Object
-        {
-            AssetHandle assetHandle = GetPacakge(packageName).LoadAssetSync<T>(assetName);
-            if (assetHandle.Status != EOperationStatus.Succeed)
-            {
-                throw new MissingReferenceException($"没有在包内找到该资源{assetName}");
-            }
-            return assetHandle.AssetObject as T;
-        }
+            => _loadAssetFactory.LoadAssetSync<T>(assetName, packageName);
         /// <summary>
         /// 异步加载一个资源
         /// <summary>
@@ -65,16 +61,7 @@ namespace HoopyGame
         /// <returns>返回资源</returns>
         /// <exception cref="MissingReferenceException"></exception>
         public async UniTask<T> LoadAssetAsync<T>(string assetName, string packageName = HotAssetConfig.PackageName) where T : Object
-        {
-
-            AssetHandle assetHandle = GetPacakge(packageName).LoadAssetAsync<T>(assetName);
-            await assetHandle;
-            if (assetHandle.Status != EOperationStatus.Succeed)
-            {
-                throw new MissingReferenceException($"没有在包内找到类型为<{typeof(T)}>的资源\"{assetName}\"");
-            }
-            return assetHandle.AssetObject as T;
-        }
+            => await _loadAssetFactory.LoadAssetAsync<T>(assetName, packageName);
         /// <summary>
         /// 同步加载一个子资源
         /// </summary>

@@ -1,4 +1,4 @@
-/*
+﻿/*
  | | | | ___   ___  _ __  _   _ / ___| __ _ _ __ ___   ___ 
  | |_| |/ _ \ / _ \| '_ \| | | | |  _ / _` | '_ ` _ \ / _ \
  |  _  | (_) | (_) | |_) | |_| | |_| | (_| | | | | | |  __/
@@ -6,7 +6,7 @@
                    |_|    |___/                            
 ┌──────────────────────────────────────────────┐
 │　Copyright(C) 2025 by HoopyGameStudio
-│　描   述*：加载UI的接口
+│　描   述*：
 │　创 建 人*：Hoopy
 │　创建时间：2025-01-01 00:00:00
 └──────────────────────────────────────────────┘
@@ -17,23 +17,31 @@
 */
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using HoopyGame.UIF;
 
-public interface ILoadUI
+namespace HoopyGame.Manager
 {
-    /// <summary>
-    /// 同步加载 非必要不使用
-    /// </summary>
-    /// <param name="UIName">UI名字</param>
-    /// <param name="uiParent">UI的父节点</param>
-    /// <returns></returns>
-    public BaseUI LoadUI(string UIName, Transform uiParent);
-    /// <summary>
-    /// 异步加载
-    /// </summary>
-    /// <param name="UIName">UI名字</param>
-    /// <param name="uiParent">UI的父节点</param>
-    /// <returns></returns>
-    public UniTask<BaseUI> LoadUIAsync(string UIName, Transform uiParent);
+    public class LoadAssetByResources : LoadAssetFactory
+    {
+        /// <summary>
+        /// 同步加载一个资源
+        /// <summary>
+        /// <param name="assetName">资源名字</param>
+        /// <returns>返回资源</returns>
+        /// <exception cref="MissingReferenceException"></exception>
+        public override T LoadAssetSync<T>(string assetName, string packageName = null)
+            => Resources.Load<T>(assetName);
 
+        /// <summary>
+        /// 异步加载一个资源
+        /// <summary>
+        /// <param name="assetName">资源名字</param>
+        /// <returns>返回资源</returns>
+        /// <exception cref="MissingReferenceException"></exception>
+        public override async UniTask<T> LoadAssetAsync<T>(string assetName, string packageName = null)
+        {
+            ResourceRequest request = Resources.LoadAsync<T>(assetName);
+            await request;
+            return request.asset as T;
+        }
+    }
 }

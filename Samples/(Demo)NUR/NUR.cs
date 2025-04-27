@@ -1,6 +1,4 @@
 using UnityEngine;
-using HoopyGame.UIF;
-using HoopyGame;
 using HoopyGame.Manager;
 
 public class NUR : MonoBehaviour

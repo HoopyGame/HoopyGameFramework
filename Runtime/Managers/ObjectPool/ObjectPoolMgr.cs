@@ -17,65 +17,67 @@
 */
 using System.Collections.Generic;
 using UnityEngine;
-
-public class ObjectPoolMgr
+namespace HoopyGame.Manager
 {
-    //所有对象池的父物体
-    private Transform _allPoolDataParent = null;
-    private Dictionary<string, SinglePoolData> _objectPool;
+    public class ObjectPoolMgr
+    {
+        //所有对象池的父物体
+        private Transform _allPoolDataParent = null;
+        private Dictionary<string, SinglePoolData> _objectPool;
 
-    ObjectPoolMgr()
-    {
-        DebugUtils.Print("初始化对象池管理器...");
-
-        _objectPool = new Dictionary<string, SinglePoolData>();
-        _allPoolDataParent = new GameObject("GameObjectPool").transform;
-    }
-    /// <summary>
-    /// 从池子内拿取
-    /// </summary>
-    /// <param name="name"></param>
-    /// <returns></returns>
-    public GameObject Pull(string name)
-    {
-        CheckHasSinglePoolData(name);
-        return _objectPool[name].Pool.Get();
-    }
-    /// <summary>
-    /// 通过物体名字（地址）物体放入池子内
-    /// </summary>
-    /// <param name="item">物体</param>
-    public void Push(GameObject item)
-    {
-        CheckHasSinglePoolData(item.name);
-        _objectPool[item.name].Pool.Release(item);
-    }
-    /// <summary>
-    /// 检测是否有对应的小池子
-    /// </summary>
-    /// <param name="path"></param>
-    public void CheckHasSinglePoolData(string path)
-    {
-        if (!_objectPool.ContainsKey(path))
+        ObjectPoolMgr()
         {
-            CreateSinglePoolData(_allPoolDataParent, path);
+            DebugUtils.Print("初始化对象池管理器...");
+
+            _objectPool = new Dictionary<string, SinglePoolData>();
+            _allPoolDataParent = new GameObject(nameof(ObjectPoolMgr)).transform;
+            _allPoolDataParent.SetParent(LSMgr.Instance.transform);
+        }
+        /// <summary>
+        /// 从池子内拿取
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public GameObject Pull(string name)
+        {
+            CheckHasSinglePoolData(name);
+            return _objectPool[name].Pool.Get();
+        }
+        /// <summary>
+        /// 通过物体名字（地址）物体放入池子内
+        /// </summary>
+        /// <param name="item">物体</param>
+        public void Push(GameObject item)
+        {
+            CheckHasSinglePoolData(item.name);
+            _objectPool[item.name].Pool.Release(item);
+        }
+        /// <summary>
+        /// 检测是否有对应的小池子
+        /// </summary>
+        /// <param name="path"></param>
+        public void CheckHasSinglePoolData(string path)
+        {
+            if (!_objectPool.ContainsKey(path))
+            {
+                CreateSinglePoolData(_allPoolDataParent, path);
+            }
+        }
+        /// <summary>
+        /// 创建一个单个小池子
+        /// </summary>
+        /// <param name="allPoolParent"></param>
+        /// <param name="itenName"></param>
+        public void CreateSinglePoolData(Transform allPoolParent, string itenName)
+        {
+            _objectPool.Add(itenName, new SinglePoolData(allPoolParent, itenName));
+        }
+        /// <summary>
+        /// 清空池子
+        /// </summary>
+        public void Clear()
+        {
+            _objectPool.Clear();
         }
     }
-    /// <summary>
-    /// 创建一个单个小池子
-    /// </summary>
-    /// <param name="allPoolParent"></param>
-    /// <param name="itenName"></param>
-    public void CreateSinglePoolData(Transform allPoolParent, string itenName)
-    {
-        _objectPool.Add(itenName, new SinglePoolData(allPoolParent, itenName));
-    }
-    /// <summary>
-    /// 清空池子
-    /// </summary>
-    public void Clear()
-    {
-        _objectPool.Clear();
-    }
 }
-

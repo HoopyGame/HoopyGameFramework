@@ -18,19 +18,19 @@
 using VContainer;
 using VContainer.Unity;
 
-namespace HoopyGame
+namespace HoopyGame.Manager
 {
     public class GameLifetimeScope : LifetimeScope
     {
         protected override void Configure(IContainerBuilder builder)
         {
-
             //--不需要Mono的单例
             //事件系统
             builder.Register<EventMgr>(Lifetime.Singleton);
             //对象池系统
             builder.Register<ObjectPoolMgr>(Lifetime.Singleton);
-            //资源管理系统
+            //资源管理系统 -->将工厂的实例注册进去 自动注入
+            builder.Register<LoadAssetByResources>(Lifetime.Singleton).As<LoadAssetFactory>();
             builder.Register<AssetMgr>(Lifetime.Singleton);
 
             //--需要Mono的单例

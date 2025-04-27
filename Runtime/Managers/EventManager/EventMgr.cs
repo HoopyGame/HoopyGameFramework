@@ -17,7 +17,7 @@
 */
 using System.Collections.Generic;
 using UnityEngine.Events;
-namespace HoopyGame
+namespace HoopyGame.Manager
 {
     public class EventMgr
     {

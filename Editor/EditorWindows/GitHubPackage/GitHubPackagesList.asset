@@ -215,6 +215,9 @@ MonoBehaviour:
   - name: TextLift
     infomation: "\u514D\u8D39\u5F00\u6E90\u7684\u53EF\u7F16\u7A0B\u6269\u5C55\u7684\u652F\u6301TextMeshProUGUI\u7684\u5B57\u4F53\u7279\u6548\u6548\u679C."
     URL: https://flowus.cn/enjoygameclub/share/fa2ac259-3498-4282-8200-3caeef47caef
+  - name: LoopScrollRect
+    infomation: "\u65E0\u9650\u6EDA\u52A8\u5217\u8868"
+    URL: https://github.com/qiankanglai/LoopScrollRect
   Documents:
   - name: GameDevMind
     infomation: "\u6700\u5168\u9762\u7684\u6E38\u620F\u5F00\u53D1\u6280\u672F\u56FE\u8C31\u3002"

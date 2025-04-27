@@ -15,23 +15,26 @@
 │　修改描述：
 └──────────────────────────────────────────────┘
 */
-public class MsgStrMgr
+namespace HoopyGame.Manager
 {
-    public struct Local
+    public class MsgStrMgr
     {
-        /// <summary>
-        /// 此行代码不要删，这个框架内切换场景用到
-        /// </summary>
-        public const string LoadSceneEvent = "LoadSceneEvent";
+        public struct Local
+        {
+            /// <summary>
+            /// 此行代码不要删，这个框架内切换场景用到
+            /// </summary>
+            public const string LoadSceneEvent = "LoadSceneEvent";
 
-        #region 以下内容可自行配置删除
-        public const string HideStudioTips = "HideStudioTips";
-        public const string ShowStuidoTips = "ShowStudioTips";
-        #endregion
+            #region 以下内容可自行配置删除
+            public const string HideStudioTips = "HideStudioTips";
+            public const string ShowStuidoTips = "ShowStudioTips";
+            #endregion
 
-    }
-    public struct Net
-    {
+        }
+        public struct Net
+        {
 
+        }
     }
 }

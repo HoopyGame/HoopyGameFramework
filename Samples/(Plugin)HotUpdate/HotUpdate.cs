@@ -23,8 +23,9 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using YooAsset;
+using HoopyGame.Manager;
 
-namespace HoopyGame.UIF
+namespace HoopyGame
 {
     public class HotUpdate : MonoBehaviour
     {

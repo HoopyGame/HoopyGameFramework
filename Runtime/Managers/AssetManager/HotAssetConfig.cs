@@ -15,7 +15,7 @@
 │　修改描述：
 └──────────────────────────────────────────────┘
 */
-namespace HoopyGame
+namespace HoopyGame.Manager
 {
     public class HotAssetConfig
     {

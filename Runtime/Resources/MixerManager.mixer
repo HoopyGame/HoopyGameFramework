@@ -19,20 +19,6 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
---- !u!244 &-1967309101629789584
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: a1001c18761061e44bc4ec46252ebb30
-  m_EffectName: Attenuation
-  m_MixLevel: 273321816074af24885b440d7ce1e395
-  m_Parameters: []
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
 --- !u!244 &-1223401549706413752
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -62,12 +48,17 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 3e25151eca479ad4ebb91c489aff2afa
+    name: BGMVolume
+  - guid: 0d766143841a09147ad52cf51a0a8142
+    name: TotalVolume
+  - guid: 2cd9c84bc995359499f4ee7eaafedbb8
+    name: SFXVolume
   m_AudioMixerGroupViews:
   - guids:
     - c4fe4b3cb29de8140af08a912abb79ce
     - ab59b9c499e55b946b40f6ae4d3a174f
-    - e4970560c5c5e2d4d8f98f79ba69b69f
     - 5736e9f99e4ad634ba4e268a4b43046e
     name: View
   m_CurrentViewIndex: 0
@@ -83,7 +74,6 @@ AudioMixerGroupController:
   m_GroupID: c4fe4b3cb29de8140af08a912abb79ce
   m_Children:
   - {fileID: -3450028966943790758}
-  - {fileID: 9149954383543227647}
   - {fileID: 6730562359950618561}
   m_Volume: 0d766143841a09147ad52cf51a0a8142
   m_Pitch: 14aa7c10d8ca2b74e93a5e52a3a752d3
@@ -140,7 +130,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Game
+  m_Name: SFX
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 5736e9f99e4ad634ba4e268a4b43046e
   m_Children: []
@@ -149,25 +139,6 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -1223401549706413752}
-  m_UserColorIndex: 0
-  m_Mute: 0
-  m_Solo: 0
-  m_BypassEffects: 0
---- !u!243 &9149954383543227647
-AudioMixerGroupController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Effect
-  m_AudioMixer: {fileID: 24100000}
-  m_GroupID: e4970560c5c5e2d4d8f98f79ba69b69f
-  m_Children: []
-  m_Volume: 49222cf621001f249ab19626076855e2
-  m_Pitch: a4d9f252988633c4782da3953cb1bd25
-  m_Send: 00000000000000000000000000000000
-  m_Effects:
-  - {fileID: -1967309101629789584}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0

@@ -6,7 +6,7 @@
                    |_|    |___/                            
 ┌──────────────────────────────────────────────┐
 │　Copyright(C) 2025 by HoopyGameStudio
-│　描   述*：音频配置部分
+│　描   述*：资源加载工厂
 │　创 建 人*：Hoopy
 │　创建时间：2025-01-01 00:00:00
 └──────────────────────────────────────────────┘
@@ -15,12 +15,16 @@
 │　修改描述：
 └──────────────────────────────────────────────┘
 */
+using Cysharp.Threading.Tasks;
+using UnityEngine;
+
 namespace HoopyGame.Manager
 {
-
-    public class AudioConfig
-    {
-        public float bgmAudioVolume = .8f;
-        public float sfxAudioVolume = .75f;
-    }
+	public abstract class LoadAssetFactory
+	{
+		//同步加载
+		public abstract T LoadAssetSync<T>(string assetName,string packageName = null) where T : Object;
+		//异步加载
+		public abstract UniTask<T> LoadAssetAsync<T>(string assetName, string packageName = null) where T : Object;
+	}
 }
