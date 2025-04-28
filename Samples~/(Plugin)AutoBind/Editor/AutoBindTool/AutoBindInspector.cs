@@ -139,7 +139,7 @@ namespace HoopyGame.Editor
 
             EditorGUILayout.LabelField("代码保存路径:");
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField(Application.dataPath + _codeSavePath.stringValue);
+            EditorGUILayout.LabelField(_codeSavePath.stringValue);
 
 
             if (GUILayout.Button("选择保存路径"))
