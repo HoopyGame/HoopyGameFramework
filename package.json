@@ -66,7 +66,7 @@
       "displayName": "(Templete)PlayerContorller",
       "description": "简单的第一人称控制器",
       "path": "Samples~/(Templete)PlayerContorller"
-    }
+    },
     {
       "displayName": "(Plugin)AutoBind",
       "description": "自动绑定UI并生成脚本",
