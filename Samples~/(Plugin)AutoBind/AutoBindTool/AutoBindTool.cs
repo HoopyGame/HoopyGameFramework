@@ -37,7 +37,7 @@ namespace HoopyGame
         private string _codeSavePath = _defaultSavePath;
         public string ClassName { get => _className; }
         public string NameSpace { get => _nameSpace; }
-        public string CodeSavePath { get => Application.dataPath + _codeSavePath; }
+        public string CodeSavePath { get =>  _codeSavePath; }
 
         public IBindRule bindRule;
 

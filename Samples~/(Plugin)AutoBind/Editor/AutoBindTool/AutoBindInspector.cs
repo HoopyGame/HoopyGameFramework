@@ -293,7 +293,7 @@ namespace HoopyGame.Editor
             tmpBindScript = tmpBindScript.Replace("#COMPONENTDATAS#", sb2.ToString());
             sb1.Clear();
             sb2.Clear();
-            
+
             using (StreamWriter sw = new StreamWriter($"{codePath}/{className}.Bind.cs"))
             {
                 sw.Write(tmpBindScript);
@@ -352,7 +352,7 @@ namespace #NAMESPACE#{
                    |_|    |___/                            
 ┌──────────────────────────────────────────────┐
 │　Copyright(C) 2025 by HoopyGameStudio
-│　描   述*：
+│　描   述*：#SCRIPTNAME#的数据组件绑定类
 │　创 建 人*：Hoopy
 │　创建时间：#TIME#
 └──────────────────────────────────────────────┘

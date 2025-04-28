@@ -53,7 +53,6 @@ namespace HoopyGame{
                 }
                 else
                 {
-                    Debug.LogError($"{target.name}第{i}个后缀对应的组件类型不存在");
                     return false;
                 }
             }
