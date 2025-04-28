@@ -32,7 +32,7 @@ namespace HoopyGame.Editor
         private const string assetScriptTempatePath =
             "Assets/com.hoopygame.hoopygameframework/Editor/ScriptCreater/Template/";
         private const string packageScriptTempatePath =
-            "Packages/com.hg.hoopygameframework/Editor/ScriptCreater/Template/";
+            "Packages/HoopyGame Framework/Editor/ScriptCreater/Template/";
 
         [MenuItem("Assets/Create/Noraml C#", false, 60)]
         public static void GeneratorCSharp()
