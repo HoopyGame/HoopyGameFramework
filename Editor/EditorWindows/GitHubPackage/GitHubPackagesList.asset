@@ -253,6 +253,9 @@ MonoBehaviour:
   - name: "\u8BBE\u8BA1\u6A21\u5F0F\u5BFC\u5B66"
     infomation: "\u8BBE\u8BA1\u6A21\u5F0F\u5BFC\u5B66"
     URL: https://blog.csdn.net/LoveLion/article/details/17517213
+  - name: Tencent GCloud
+    infomation: "\u817E\u8BAF\u6E38\u620F\u7814\u53D1\u6280\u672F"
+    URL: https://gcloud.tencent.com/
   Samples:
   - name: ECSSample
     infomation: "ECS\u5B98\u65B9\u793A\u4F8B"
