@@ -37,7 +37,7 @@ namespace HoopyGame
             string editorPath = Application.dataPath + "/Editor";
             if (!Directory.Exists(editorPath))
             {
-                Debug.Log("自动创建Editor文件夹.");
+                DebugUtils.Print("自动创建Editor文件夹.");
                 Directory.CreateDirectory(editorPath);
             }
             if (File.Exists(editorPath + "/lock.hoopygame")) return;
@@ -72,7 +72,7 @@ namespace HoopyGame
             string manifestPath = Path.Combine(Application.dataPath, "../Packages/manifest.json");
             if (!File.Exists(manifestPath))
             {
-                Debug.LogError("没有找到manifest.json");
+                DebugUtils.Print("没有找到manifest.json", DebugType.Error);
                 return;
             }
 
@@ -82,7 +82,7 @@ namespace HoopyGame
             if (Regex.IsMatch(originalJson, $@"""name""\s*:\s*""{registry.name}""") ||
                 Regex.IsMatch(originalJson, $@"""url""\s*:\s*""{registry.url}"""))
             {
-                Debug.LogWarning($"当前已经存在注册表：'{registry.name}'，无需新增！");
+                DebugUtils.Print($"当前已经存在注册表：'{registry.name}'，无需新增！", DebugType.Warning);
                 return;
             }
 
@@ -118,7 +118,7 @@ namespace HoopyGame
 
             // 4. 写入文件（保留所有原有格式）
             File.WriteAllText(manifestPath, originalJson);
-            Debug.Log($"新增 Scoped Registry: {registry.name}");
+            DebugUtils.Print($"新增 Scoped Registry: {registry.name}");
 
             // 5. 强制刷新包管理器
             UnityEditor.PackageManager.Client.Resolve();
