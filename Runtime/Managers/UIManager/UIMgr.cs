@@ -42,20 +42,13 @@ namespace HoopyGame.Manager
         public Image Shield { get; private set; }                                     //遮罩
 
         private readonly float _shieldHight = .8f;                                    //遮罩的暗度
-        private readonly float _shieldHideDuration = .25f;                             //隐藏或显示持续时间
+        private readonly float _shieldHideDuration = .25f;                            //隐藏或显示持续时间
 
         private Dictionary<UIType, Dictionary<string, BaseUI>> _totalUIMap;           //所有UI的存放
         private Dictionary<string, BasePopup> _openingPopupUI;                        //目前打开着的Popup
 
-        private LeastResentlyUsedUtility _notUsedResentlyUI;                            //最久未使用算法
-        private UILoador _uiLoador;
-        //--这里不用担心，这是多线程才可能会遇到的问题  
-        //private void Awake()
-        //{
-        //    //Tentative：创建Lazy的优先级好似比较高 这里暂定不修改 
-        //    //           内部写了_inited来规避二次初始化，后续若有问题，再来修改这里
-        //    InitSelf(this);
-        //
+        private LeastResentlyUsedUtility _notUsedResentlyUI;                          //最久未使用算法
+        private UILoador _uiLoador;                                                   //UI加载器
         UIMgr()
         {
             OnInit();
@@ -66,7 +59,7 @@ namespace HoopyGame.Manager
         public void OnInit()
         {
             InitUIMap();
-            _notUsedResentlyUI = new LeastResentlyUsedUtility(5);
+            _notUsedResentlyUI = new LeastResentlyUsedUtility(6);   //六次未使用才关闭
             //实例工厂
             _uiLoador = new UILoador();
             try
@@ -238,28 +231,23 @@ namespace HoopyGame.Manager
 
             baseUI.Close(isDestory);
         }
+
         /// <summary>
-        /// 隐藏（复用）或关闭（不复用）一个UI
+        /// 当一个UI删除后的管理(此方法受保护，不要手动调用)
         /// </summary>
         /// <param name="baseUI">UI</param>
         /// <param name="uiType">UI类型</param>
         /// <param name="isDestory">是否删除</param>
-        public void CloseUI(BaseUI baseUI, UIType uiType, bool isDestory = false)
+        public void CloseUIJustAutoUsed(BaseUI baseUI, UIType uiType, bool isDestory = false)
         {
             if (isDestory)
             {
                 RemoveUIFromUIMap(baseUI.name, uiType);
                 _notUsedResentlyUI.RemoveFromTotalHideUIList(baseUI.name);
-                baseUI.OnRemoveListener();
-                baseUI.OnDestory(); 
-                //DestroyImmediate(baseUI.gameObject); --↓
-                UnityEngine.Object.DestroyImmediate(baseUI.gameObject);
             }
             else
             {
                 _notUsedResentlyUI.AddToTotalHideUIList(baseUI);
-                baseUI.OnClose();
-                baseUI.gameObject.SetActive(false);
             }
         }
         /// <summary>

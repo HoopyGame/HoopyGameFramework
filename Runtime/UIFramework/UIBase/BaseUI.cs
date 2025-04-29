@@ -22,6 +22,7 @@ using UnityEngine.UI;
 
 namespace HoopyGame.UIF
 {
+    [RequireComponent(typeof(CanvasGroup))]
     public abstract class BaseUI : MonoBehaviour
     {
         private IUIDataBase _data;
@@ -32,6 +33,7 @@ namespace HoopyGame.UIF
         public UIType uiType;                               //UI类型 新的类型要在这里增加
 
         private Action _closeBtnEvent;                      //关闭触发的事件
+        private CanvasGroup _cg;                            //用于管理这个UI的显示隐藏
 
         /// <summary>
         /// 是否已经初始化
@@ -46,16 +48,18 @@ namespace HoopyGame.UIF
             //这里是为了避免回退打开时传入空data将原本的data覆盖掉
             if (data != null) _data = data;
             if (!IsInit) Init();//没有初始化过才会初始化
-            OnStart();//Start
-
-            gameObject.SetActive(true);
+            
             transform.SetAsLastSibling();
+            _cg.alpha = 1;
+            _cg.blocksRaycasts = true;
+            OnStart();//Start
         }
         /// <summary>
         /// 初始化
         /// </summary>
         private void Init()
         {
+            _cg = GetComponent<CanvasGroup>();
             closeBtn = transform.FindButtonFrommChilds("Close_Btn");
             //Init以后初始化组件
             OnInitComponent();
@@ -68,7 +72,21 @@ namespace HoopyGame.UIF
         /// </summary>
         public virtual void Close(bool isDestroy = false)
         {
-            LSMgr.Instance.GetFromeGLS<UIMgr>().CloseUI(this, uiType, isDestroy);
+            if (isDestroy)
+            {
+                OnRemoveListener();
+                OnDestory();
+                //DestroyImmediate(baseUI.gameObject); --↓
+                DestroyImmediate(gameObject);
+            }
+            else
+            {
+                OnClose();
+                _cg.alpha = 0;
+                _cg.blocksRaycasts = false;
+            }
+
+            LSMgr.Instance.GetFromeGLS<UIMgr>().CloseUIJustAutoUsed(this, uiType, isDestroy);
         }
 
         public void InitCloseCallback(Action act)
