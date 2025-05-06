@@ -4,98 +4,65 @@
  |  _  | (_) | (_) | |_) | |_| | |_| | (_| | | | | | |  __/
  |_| |_|\___/ \___/| .__/ \__, |\____|\__,_|_| |_| |_|\___|
                    |_|    |___/                            
-©°©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©´
-©¦¡¡Copyright(C) 2025 by HoopyGameStudio
-©¦¡¡Ãè   Êö*£º×ÊÔ´ÈÈ¸üĞÂÁ÷³Ì
-©¦¡¡´´ ½¨ ÈË*£ºHoopy
-©¦¡¡´´½¨Ê±¼ä£º2025-01-01 00:00:00
-©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼
-©°©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©´
-©¦¡¡ĞŞ ¸Ä ÈË£º
-©¦¡¡ĞŞ¸ÄÃèÊö£º
-©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚ã€€Copyright(C) 2025 by HoopyGameStudio
+â”‚ã€€æ   è¿°*ï¼šèµ„æºçƒ­æ›´æ–°æµç¨‹(é¦–åŒ…)
+â”‚ã€€åˆ› å»º äºº*ï¼šHoopy
+â”‚ã€€åˆ›å»ºæ—¶é—´ï¼š2025/5/6 16:36:39
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚ã€€ä¿® æ”¹ äººï¼š
+â”‚ã€€ä¿®æ”¹æè¿°ï¼š
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 */
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 using YooAsset;
 using HoopyGame.Manager;
 
-namespace HoopyGame
-{
-    public class HotUpdate : MonoBehaviour
-    {
-        //UIµÄ¿ØÖÆ
-        private Slider _progress_slider;                        //½ø¶ÈÌõ
-        private TextMeshProUGUI _progress_text;                 //½ø¶ÈÌõÎÄ×Ö
-        private TextMeshProUGUI _status_text;                   //×´Ì¬ÎÄ×Ö
+namespace HoopyGame{
+	public partial class HotUpdatePanel : MonoBehaviour
+	{
+        //é¦–åŒ…éœ€è¦çš„æ‰€æœ‰å­—ä½“-â†“
+        //qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890:._!?
+        //æ£€æµ‹èµ„æºæ›´æ–°æœ¬åœ°åŒ…ç‰ˆæœ¬è·å–å·å¤±è´¥æˆåŠŸæ¸…å•æ˜¯æœ€æ–°çš„è¯·æ£€æŸ¥ç½‘ç»œæ²¡æœ‰ç›®å‰è¿›è¡Œå¤§å°æ•°é‡æ­£åœ¨ä¸‹è½½å®Œæˆ
 
-        private Image _shale_img;                               //ÕÚÕÖ
-
-        private Transform _needUpdateTips;                      //ÊÇ·ñĞèÒª¸üĞÂ
-        private TextMeshProUGUI _needUpdateContent_Text;        //ÊÇ·ñĞèÒª¸üĞÂÎÄ×Ö
-        private Button _update_Btn;                             //¸üĞÂ°´Å¥
-        private Button _cancel_Btn;                             //È¡Ïû°´Å¥
-        //ÕâÀïÃ¿´ÎÖØÊÔ¶¼Òª¶¼ÒªÖØĞÂ²âÊÔÒ»ÏÂÍøÂçµÄÁ¬Í¨ĞÔ
-        private Transform _errorTips;                           //´íÎóĞÅÏ¢ÌáÊ¾
-        private TextMeshProUGUI _errorTipsContent;              //´íÎóÌáÊ¾ÄÚÈİ
-        private Button _reset_Btn;                              //ÖØÊÔ
-
-        //×ÊÔ´°üÅäÖÃÏà¹Ø
-        [Header("×ÊÔ´ÅäÖÃÏà¹Ø")]
+        //èµ„æºåŒ…é…ç½®ç›¸å…³
+        [Header("èµ„æºé…ç½®ç›¸å…³")]
         [SerializeField]
-        EPlayMode _playMode = EPlayMode.EditorSimulateMode;                         //×ÊÔ´¼ÓÔØÄ£Ê½
+        EPlayMode _playMode = EPlayMode.EditorSimulateMode;                         //èµ„æºåŠ è½½æ¨¡å¼
         [SerializeField]
-        private string _cloudPackageVersion = "";                                    //ÔÆ¶Ë×ÊÔ´°æ±¾
-        private string _localPackageVersion = "0.0.0";                               //±¾µØ×ÊÔ´°æ±¾
-        [Header("×ÊÔ´°üÏÂÔØÏà¹Ø")]
+        private string _cloudPackageVersion = "";                                    //äº‘ç«¯èµ„æºç‰ˆæœ¬
+        private string _localPackageVersion = "0.0.0";                               //æœ¬åœ°èµ„æºç‰ˆæœ¬
+        [Header("èµ„æºåŒ…ä¸‹è½½ç›¸å…³")]
         [SerializeField]
-        private int downloadingMaxNum = 10;                                         //×î´óÏÂÔØÊıÁ¿
+        private int downloadingMaxNum = 10;                                         //æœ€å¤§ä¸‹è½½æ•°é‡
         [SerializeField]
-        private int failedTryAgain = 2;                                             //ÏÂÔØÊ§°ÜÖØÊÔ´ÎÊı
-        ResourceDownloaderOperation _downloaderOperation;                           //×ÊÔ´ÏÂÔØÆ÷²Ù×÷Àà
+        private int failedTryAgain = 2;                                             //ä¸‹è½½å¤±è´¥é‡è¯•æ¬¡æ•°
+        ResourceDownloaderOperation _downloaderOperation;                           //èµ„æºä¸‹è½½å™¨æ“ä½œç±»
 
         private ResourcePackage _mainPackage;
         private InitializationOperation _initializationOperation;
 
-        private void Awake()
+        void Awake()
         {
-            //»ñÈ¡×é¼ş
-            OnInitComponent();
-        }
-        private void OnInitComponent()
-        {
-            _progress_slider = transform.FindComponentFromChild<Slider>("Progress_Slider");
-            _progress_text = transform.FindTextMeshProUGUIFromChilds("Progress_Txt");
-            _status_text = transform.FindTextMeshProUGUIFromChilds("Status_Txt");
-
-            _shale_img = transform.FindImageFromChilds("Shale_Img");
-
-            _needUpdateTips = transform.FindTransFromChild("NeedUpdateTips");
-            _needUpdateContent_Text = _needUpdateTips.FindTextMeshProUGUIFromChilds("NeedUdpateContent_Txt");
-            _update_Btn = _needUpdateTips.FindButtonFrommChilds("Update_Btn");
-            _cancel_Btn = _needUpdateTips.FindButtonFrommChilds("Cancel_Btn");
-
-            _errorTips = transform.FindTransFromChild("ErrorTips");
-            _errorTipsContent = _errorTips.FindTextMeshProUGUIFromChilds("ErrorTipsContent_Txt");
-            _reset_Btn = _errorTips.FindButtonFrommChilds("Reset_Btn");
+            InitComponent();
         }
         void Start()
         {
             SetProgress(1);
-            //1.³õÊ¼»¯YooAssets
+            //1.åˆå§‹åŒ–YooAssets
             YooAssets.Initialize();
-            SetStatus("¼ì²â×ÊÔ´¸üĞÂO.o");
-            //2.´´½¨×ÊÔ´°ü
+            SetStatus("æ£€æµ‹èµ„æºæ›´æ–°O.o!");
+            //2.åˆ›å»ºèµ„æºåŒ…
             _mainPackage = YooAssets.TryGetPackage(HotAssetConfig.PackageName);
             if (_mainPackage == null) _mainPackage = YooAssets.CreatePackage(HotAssetConfig.PackageName);
             else _localPackageVersion = _mainPackage.GetPackageVersion();
 
-            DebugUtils.Print($"±¾µØ×ÊÔ´°ü°æ±¾:{_localPackageVersion}");
+            DebugUtils.Print($"æœ¬åœ°èµ„æºåŒ…ç‰ˆæœ¬:{_localPackageVersion}");
             YooAssets.SetDefaultPackage(_mainPackage);
             BeginHotUpdate();
         }
@@ -118,12 +85,12 @@ namespace HoopyGame
             _cancel_Btn.OnUnRegister(OnCancelBtnClick);
         }
         /// <summary>
-        /// ¿ªÊ¼ÈÈ¸üĞÂÁ÷³Ì
+        /// å¼€å§‹çƒ­æ›´æ–°æµç¨‹
         /// </summary>
         /// <returns></returns>
         private void BeginHotUpdate()
         {
-            //3.ÉèÖÃ×ÊÔ´°ü¼ÓÔØÄ£Ê½
+            //3.è®¾ç½®èµ„æºåŒ…åŠ è½½æ¨¡å¼
             switch (_playMode)
             {
                 case EPlayMode.EditorSimulateMode:
@@ -142,7 +109,7 @@ namespace HoopyGame
         }
 
         /// <summary>
-        /// ±à¼­Æ÷Ä£ÄâÄ£Ê½
+        /// ç¼–è¾‘å™¨æ¨¡æ‹Ÿæ¨¡å¼
         /// </summary>
         private async UniTaskVoid EditorSimulateMode()
         {
@@ -157,7 +124,7 @@ namespace HoopyGame
             CheckLoadStatus();
         }
         /// <summary>
-        /// µ¥»úÀëÏßÄ£Ê½
+        /// å•æœºç¦»çº¿æ¨¡å¼
         /// </summary>
         private async UniTaskVoid OfflinePlayMode()
         {
@@ -170,7 +137,7 @@ namespace HoopyGame
             CheckLoadStatus();
         }
         /// <summary>
-        /// ÔÚÏßÄ£Ê½
+        /// åœ¨çº¿æ¨¡å¼
         /// </summary>
         private async UniTaskVoid HostPlayMode()
         {
@@ -187,13 +154,13 @@ namespace HoopyGame
             CheckLoadStatus();
         }
         /// <summary>
-        /// WebÄ£Ê½-->Î¢ĞÅĞ¡ÓÎÏ·£¬¶¶ÒôĞ¡ÓÎÏ·µÈWebGLÆ½Ì¨
+        /// Webæ¨¡å¼-->å¾®ä¿¡å°æ¸¸æˆï¼ŒæŠ–éŸ³å°æ¸¸æˆç­‰WebGLå¹³å°
         /// </summary>
         private async UniTaskVoid WebPlayMode()
         {
             IRemoteServices remoteServices = new RemoteServices(HotAssetConfig.GetDefaultHostServer, HotAssetConfig.GetFallbackHostServer);
             var webServerFileSystemParams = FileSystemParameters.CreateDefaultWebServerFileSystemParameters();
-            var webRemoteFileSystemParams = FileSystemParameters.CreateDefaultWebRemoteFileSystemParameters(remoteServices); //Ö§³Ö¿çÓòÏÂÔØ
+            var webRemoteFileSystemParams = FileSystemParameters.CreateDefaultWebRemoteFileSystemParameters(remoteServices); //æ”¯æŒè·¨åŸŸä¸‹è½½
 
             var initParameters = new WebPlayModeParameters();
             initParameters.WebServerFileSystemParameters = webServerFileSystemParams;
@@ -206,7 +173,7 @@ namespace HoopyGame
         }
 
         /// <summary>
-        /// ¼ì²é×ÊÔ´¼ÓÔØ×´Ì¬
+        /// æ£€æŸ¥èµ„æºåŠ è½½çŠ¶æ€
         /// </summary>
         /// <param name="operation"></param>
         private void CheckLoadStatus()
@@ -219,26 +186,26 @@ namespace HoopyGame
 
         }
         /// <summary>
-        /// »ñÈ¡×ÊÔ´°æ±¾ºÅ
+        /// è·å–èµ„æºç‰ˆæœ¬å·
         /// </summary>
         private async UniTaskVoid GetAssetVersion()
         {
-            //4.×ÊÔ´¼ÓÔØÍê³Éºó£¬»ñÈ¡×ÊÔ´°üµÄ°æ±¾ºÅ
+            //4.èµ„æºåŠ è½½å®Œæˆåï¼Œè·å–èµ„æºåŒ…çš„ç‰ˆæœ¬å·
             var requestOperation = _mainPackage.RequestPackageVersionAsync();
             await requestOperation;
             if (requestOperation.Status != EOperationStatus.Succeed)
             {
-                //»ñÈ¡°æ±¾ºÅÊ§°Ü
-                ShowErrorTips($"»ñÈ¡×ÊÔ´°æ±¾ºÅÊ§°Ü£¡", requestOperation.Error);
+                //è·å–ç‰ˆæœ¬å·å¤±è´¥
+                ShowErrorTips($"è·å–èµ„æºç‰ˆæœ¬å·å¤±è´¥!", requestOperation.Error);
                 return;
             }
             _cloudPackageVersion = requestOperation.PackageVersion;
-            //SetStatus($"»ñÈ¡×ÊÔ´°æ±¾ºÅ³É¹¦£º{packageVersion}");
-            DebugUtils.Print($"»ñÈ¡×ÊÔ´°æ±¾ºÅ³É¹¦£º{_cloudPackageVersion}");
+            //SetStatus($"è·å–èµ„æºç‰ˆæœ¬å·æˆåŠŸï¼š{packageVersion}");
+            DebugUtils.Print($"è·å–èµ„æºç‰ˆæœ¬å·æˆåŠŸ:{_cloudPackageVersion}");
             GetAssetManifestFile().Forget();
         }
         /// <summary>
-        /// »ñÈ¡¸üĞÂÇåµ¥
+        /// è·å–æ›´æ–°æ¸…å•
         /// </summary>
         /// <returns></returns>
         private async UniTaskVoid GetAssetManifestFile()
@@ -246,66 +213,66 @@ namespace HoopyGame
 
             if (_playMode == EPlayMode.EditorSimulateMode || _playMode == EPlayMode.OfflinePlayMode)
             {
-                //5.»ñÈ¡ÎÄ¼şÇåµ¥ÁĞ±í
+                //5.è·å–æ–‡ä»¶æ¸…å•åˆ—è¡¨
                 var offlineManifestOperation = _mainPackage.UpdatePackageManifestAsync(_cloudPackageVersion);
                 await offlineManifestOperation;
                 if (offlineManifestOperation.Status != EOperationStatus.Succeed)
                 {
-                    //¸üĞÂÎÄ¼şÇåµ¥Ê§°Ü
-                    ShowErrorTips($"¸üĞÂÎÄ¼şÇåµ¥Ê§°Ü£¡", offlineManifestOperation.Error);
+                    //æ›´æ–°æ–‡ä»¶æ¸…å•å¤±è´¥
+                    ShowErrorTips($"æ›´æ–°æ–‡ä»¶æ¸…å•å¤±è´¥!", offlineManifestOperation.Error);
                     return;
                 }
-                //±à¼­Æ÷Ä£ÄâÄ£Ê½ÏÂ²»ĞèÒªÏÂÔØ×ÊÔ´
-                SetStatus($"×ÊÔ´ÊÇ×îĞÂµÄo.O");
+                //ç¼–è¾‘å™¨æ¨¡æ‹Ÿæ¨¡å¼ä¸‹ä¸éœ€è¦ä¸‹è½½èµ„æº
+                SetStatus($"èµ„æºæ˜¯æœ€æ–°çš„o.O!");
                 await UniTask.WaitForSeconds(.5f);
                 StartGame();
                 return;
             }
-            //¼ì²éÍøÂçÁ¬½Ó
+            //æ£€æŸ¥ç½‘ç»œè¿æ¥
             var hasInternet = await HasInternetAccess();
             if(!hasInternet)
             {
-                //Ã»ÓĞÍøÂç
-                ShowErrorTips("Çë¼ì²éÍøÂçÁ¬½Ó!", "Ã»ÓĞÍøÂç......");
+                //æ²¡æœ‰ç½‘ç»œ
+                ShowErrorTips("è¯·æ£€æŸ¥ç½‘ç»œè¿æ¥!", "æ²¡æœ‰ç½‘ç»œ......");
                 return;
             }
-            //5.»ñÈ¡ÎÄ¼şÇåµ¥ÁĞ±í
+            //5.è·å–æ–‡ä»¶æ¸…å•åˆ—è¡¨
             var updateManifestOperation = _mainPackage.UpdatePackageManifestAsync(_cloudPackageVersion);
             await updateManifestOperation;
             if (updateManifestOperation.Status != EOperationStatus.Succeed)
             {
-                //¸üĞÂÎÄ¼şÇåµ¥Ê§°Ü
-                ShowErrorTips($"¸üĞÂÎÄ¼şÇåµ¥Ê§°Ü£¡", updateManifestOperation.Error);
+                //æ›´æ–°æ–‡ä»¶æ¸…å•å¤±è´¥
+                ShowErrorTips($"æ›´æ–°æ–‡ä»¶æ¸…å•å¤±è´¥!", updateManifestOperation.Error);
                 return;
             }
-            //6.ÏÂÔØÎÄ¼şÇåµ¥µÄÄÚÈİ
+            //6.ä¸‹è½½æ–‡ä»¶æ¸…å•çš„å†…å®¹
             _downloaderOperation = _mainPackage.CreateResourceDownloader(downloadingMaxNum, failedTryAgain);
-            //6.1Ã»ÓĞĞèÒªÏÂÔØµÄ×ÊÔ´
+            //6.1æ²¡æœ‰éœ€è¦ä¸‹è½½çš„èµ„æº
             if (_downloaderOperation.TotalDownloadCount == 0)
             {
-                //Ã»ÓĞĞèÒªÏÂÔØµÄ×ÊÔ´
-                SetStatus($"Ä¿Ç°×ÊÔ´ÊÇ×îĞÂµÄO.o");
+                //æ²¡æœ‰éœ€è¦ä¸‹è½½çš„èµ„æº
+                SetStatus($"ç›®å‰èµ„æºæ˜¯æœ€æ–°çš„O.o!");
                 StartGame();
                 return;
             }
-            _downloaderOperation.DownloadUpdateCallback = OnDownloadUpdateFunction; //×¢²áÏÂÔØµ÷ÓÃµÄ»Øµ÷
-            //6.2ÓĞĞèÒªÏÂÔØµÄ×ÊÔ´ ËùÓĞÎÄ¼şÊıÁ¿ºÍÎÄ¼ş´óĞ¡
+            _downloaderOperation.DownloadUpdateCallback = OnDownloadUpdateFunction; //æ³¨å†Œä¸‹è½½è°ƒç”¨çš„å›è°ƒ
+            //6.2æœ‰éœ€è¦ä¸‹è½½çš„èµ„æº æ‰€æœ‰æ–‡ä»¶æ•°é‡å’Œæ–‡ä»¶å¤§å°
             int totalDownloadCount = _downloaderOperation.TotalDownloadCount;
             double totalDownloadBytes = _downloaderOperation.TotalDownloadBytes;
 
-            //µ¯´°¸üĞÂ(¼ì²éÊÇ·ñÇ¿¸üĞÂ£¬·ÇÇ¿¸üĞÂ¿ÉÒÔÈ¡Ïû)  TODO-->Ä¿Ç°ÒªÇóÇ¿ÖÆ¸üĞÂ
-            ShowUpdateTips($"¼ì²éµ½×ÊÔ´¸üĞÂ£¬ÊÇ·ñ½øĞĞ¸üĞÂ£¿\n×ÊÔ´´óĞ¡£º{totalDownloadBytes / 1048576:F2}MB"
-                , $"¼ì²éµ½×ÊÔ´¸üĞÂ£¬ÊıÁ¿£º{totalDownloadCount},´óĞ¡£º{totalDownloadBytes / 1048576:F2}MB");
+            //å¼¹çª—æ›´æ–°(æ£€æŸ¥æ˜¯å¦å¼ºæ›´æ–°ï¼Œéå¼ºæ›´æ–°å¯ä»¥å–æ¶ˆ)  TODO-->ç›®å‰è¦æ±‚å¼ºåˆ¶æ›´æ–°
+            ShowUpdateTips($"æ£€æŸ¥åˆ°èµ„æºæ›´æ–°,æ˜¯å¦è¿›è¡Œæ›´æ–°?\nèµ„æºå¤§å°ï¼š{totalDownloadBytes / 1048576:F2}MB"
+                , $"æ£€æŸ¥åˆ°èµ„æºæ›´æ–°,æ•°é‡ï¼š{totalDownloadCount},å¤§å°ï¼š{totalDownloadBytes / 1048576:F2}MB");
 
         }
-        //¼ì²éÍøÂçÊÇ·ñÍ¨³©
+        //æ£€æŸ¥ç½‘ç»œæ˜¯å¦é€šç•…
         public async UniTask<bool> HasInternetAccess()
         {
-            // Ê¹ÓÃ²»»á·µ»Ø404µÄ±ê×¼API¶Ëµã
+            // ä½¿ç”¨ä¸ä¼šè¿”å›404çš„æ ‡å‡†APIç«¯ç‚¹
             string[] testUrls = new string[]
             {
-                "https://www.baidu.com",                // °Ù¶È
-                "https://www.google.com",               // ¹È¸è·µ»Ø¿ÕÄÚÈİµÄµØÖ·
+                "https://www.baidu.com",                // ç™¾åº¦
+                "https://www.google.com",               // è°·æ­Œè¿”å›ç©ºå†…å®¹çš„åœ°å€
             };
 
             foreach (var url in testUrls)
@@ -313,7 +280,7 @@ namespace HoopyGame
                 try
                 {
                     using UnityWebRequest request = UnityWebRequest.Head(url);
-                    request.timeout = 3; // 3Ãë³¬Ê±
+                    request.timeout = 3; // 3ç§’è¶…æ—¶
                     var operation = request.SendWebRequest();
 
                     while (!operation.isDone)
@@ -332,129 +299,129 @@ namespace HoopyGame
             }
             return false;
         }
-        //µã»÷¸üĞÂ°´Å¥
+        //ç‚¹å‡»æ›´æ–°æŒ‰é’®
         private void OnUpdateBtnClick()
         {
-            //µã»÷¸üĞÂ°´Å¥
-            SetStatus($"ÕıÔÚÏÂÔØ×ÊÔ´o.O");
-            //¿ªÊ¼ÏÂÔØ×ÊÔ´
+            //ç‚¹å‡»æ›´æ–°æŒ‰é’®
+            SetStatus($"æ­£åœ¨ä¸‹è½½èµ„æºo.O!");
+            //å¼€å§‹ä¸‹è½½èµ„æº
             DownHotAssets().Forget();
         }
-        //µã»÷È¡Ïû¸üĞÂ°´Å¥
+        //ç‚¹å‡»å–æ¶ˆæ›´æ–°æŒ‰é’®
         private void OnCancelBtnClick()
         {
-            //ÅĞ¶ÏÊÇ·ñÊÇÇ¿ÖÆ¸üĞÂ£¬TODO
+            //åˆ¤æ–­æ˜¯å¦æ˜¯å¼ºåˆ¶æ›´æ–°ï¼ŒTODO
             Application.Quit();
         }
 
         /// <summary>
-        /// ÏÂÔØÈÈ¸üĞÂ×ÊÔ´
+        /// ä¸‹è½½çƒ­æ›´æ–°èµ„æº
         /// </summary>
         /// <returns></returns>
         private async UniTaskVoid DownHotAssets()
         {
-            //7.×¢²áÏÂÔØ½ø¶È»Øµ÷-->¿ªÊ¼ÏÂÔØ
-            _downloaderOperation.BeginDownload(); //¿ªÊ¼ÏÂÔØ
-            await _downloaderOperation; //µÈ´ıÏÂÔØÍê³É
-            //8.µÈ´ıÏÂÔØÍê³É
+            //7.æ³¨å†Œä¸‹è½½è¿›åº¦å›è°ƒ-->å¼€å§‹ä¸‹è½½
+            _downloaderOperation.BeginDownload(); //å¼€å§‹ä¸‹è½½
+            await _downloaderOperation; //ç­‰å¾…ä¸‹è½½å®Œæˆ
+            //8.ç­‰å¾…ä¸‹è½½å®Œæˆ
             if (_downloaderOperation.Status != EOperationStatus.Succeed)
             {
-                //ÏÂÔØÊ§°Ü
-                ShowErrorTips("×ÊÔ´ÏÂÔØÊ§°Ü!", $"×ÊÔ´ÏÂÔØÊ§°Ü£º{_downloaderOperation.Error}");
+                //ä¸‹è½½å¤±è´¥
+                ShowErrorTips("èµ„æºä¸‹è½½å¤±è´¥!", $"èµ„æºä¸‹è½½å¤±è´¥ï¼š{_downloaderOperation.Error}");
                 return;
             }
-            //ÏÂÔØ³É¹¦ 
-            DebugUtils.Print($"×ÊÔ´ÏÂÔØ³É¹¦,¿ªÊ¼ÇåÀí²»ÔÙÊ¹ÓÃµÄ×ÊÔ´»º´æ-->{_downloaderOperation.BeginTime}");
-            //9.ÇåÀí×ÊÔ´°ü ÇåÀíÎÄ¼şÏµÍ³Î´Ê¹ÓÃµÄ»º´æ×ÊÔ´ÎÄ¼ş
+            //ä¸‹è½½æˆåŠŸ 
+            DebugUtils.Print($"èµ„æºä¸‹è½½æˆåŠŸ,å¼€å§‹æ¸…ç†ä¸å†ä½¿ç”¨çš„èµ„æºç¼“å­˜-->{_downloaderOperation.BeginTime}");
+            //9.æ¸…ç†èµ„æºåŒ… æ¸…ç†æ–‡ä»¶ç³»ç»Ÿæœªä½¿ç”¨çš„ç¼“å­˜èµ„æºæ–‡ä»¶
             var clearCacheOperation = _mainPackage.ClearCacheFilesAsync(EFileClearMode.ClearUnusedBundleFiles);
             await clearCacheOperation;
             if (clearCacheOperation.Status != EOperationStatus.Succeed)
-                //ÇåÀíÊ§°Ü
-                DebugUtils.Print($"ÎÄ¼şÇåÀíÊ§°Ü£º{clearCacheOperation.Error}", DebugType.Error);
+                //æ¸…ç†å¤±è´¥
+                DebugUtils.Print($"æ–‡ä»¶æ¸…ç†å¤±è´¥ï¼š{clearCacheOperation.Error}", DebugType.Error);
             else
-                //ÇåÀí³É¹¦
-                DebugUtils.Print($"ÎÄ¼şÇåÀí³É¹¦--> {clearCacheOperation.BeginTime}");
+                //æ¸…ç†æˆåŠŸ
+                DebugUtils.Print($"æ–‡ä»¶æ¸…ç†æˆåŠŸ--> {clearCacheOperation.BeginTime}");
 
-            //¿ªÊ¼ÓÎÏ·
+            //å¼€å§‹æ¸¸æˆ
             await UniTask.WaitForSeconds(.5f);
-            SetStatus("×ÊÔ´¸üĞÂÍê³É");
+            SetStatus("èµ„æºæ›´æ–°å®Œæˆ");
             StartGame();
         }
         /// <summary>
-        /// ÏÂÔØ½ø¶È»Øµ÷º¯Êı
+        /// ä¸‹è½½è¿›åº¦å›è°ƒå‡½æ•°
         /// </summary>
         /// <param name="data"></param>
         /// <exception cref="NotImplementedException"></exception>
         private void OnDownloadUpdateFunction(DownloadUpdateData data)
         {
-            //TODO : ´¦ÀíÏÂÔØ½ø¶È-->data.Progress data.CurrentDownloadBytes data.CurrentDownloadCount
-            _progress_slider.value = data.Progress;
-            _progress_text.text = $"{data.Progress * 100:F2}%";
+            //TODO : å¤„ç†ä¸‹è½½è¿›åº¦-->data.Progress data.CurrentDownloadBytes data.CurrentDownloadCount
+            _progress_Sld.value = data.Progress;
+            _progress_Txt.text = $"{data.Progress * 100:F2}%";
         }
-        //ÉèÖÃ½ø¶È
+        //è®¾ç½®è¿›åº¦
         private void SetProgress(int value)
         {
-            _progress_slider.value = value;
-            _progress_text.text = $"{value * 100}%";
+            _progress_Sld.value = value;
+            _progress_Txt.text = $"{value * 100}%";
         }
-        //ÉèÖÃ×´Ì¬
+        //è®¾ç½®çŠ¶æ€
         private void SetStatus(string currentStatus)
         {
-            _status_text.text = currentStatus;
+            _status_Txt.text = currentStatus;
             DebugUtils.Print(currentStatus);
         }
-        //ÉèÖÃ´íÎóµ¯´°
+        //è®¾ç½®é”™è¯¯å¼¹çª—
         private void ShowErrorTips(string errorStr, string debug)
         {
             DebugUtils.Print(debug, DebugType.Error);
-            _shale_img.DOFade(.8f, .25f);
+            _shale_Img.DOFade(.8f, .25f);
 
-            _errorTipsContent.text = errorStr;
-            _errorTips.localScale = Vector3.zero;
-            _errorTips.gameObject.SetActive(true);
-            _errorTips.DOScale(Vector3.one, .4f)
+            _errorTipsContent_Txt.text = errorStr;
+            _errorTips_Trans.localScale = Vector3.zero;
+            _errorTips_Trans.gameObject.SetActive(true);
+            _errorTips_Trans.DOScale(Vector3.one, .4f)
                 .SetEase(Ease.OutBack);
         }
         public void HideErrorTips()
         {
-            _shale_img.DOFade(0f, .25f);
-            _errorTips.DOScale(Vector3.zero, .3f)
+            _shale_Img.DOFade(0f, .25f);
+            _errorTips_Trans.DOScale(Vector3.zero, .3f)
                 .SetEase(Ease.InBack)
                 .OnComplete(() =>
                 {
-                    _errorTips.gameObject.SetActive(false);
+                    _errorTips_Trans.gameObject.SetActive(false);
                 });
         }
-        //ÉèÖÃ¸üĞÂÌáÊ¾
+        //è®¾ç½®æ›´æ–°æç¤º
         private void ShowUpdateTips(string errorStr, string debug)
         {
             DebugUtils.Print(debug);
-            _shale_img.DOFade(.8f, .25f);
+            _shale_Img.DOFade(.8f, .25f);
 
-            _needUpdateContent_Text.text = errorStr;
-            _needUpdateTips.localScale = Vector3.zero;
-            _needUpdateTips.gameObject.SetActive(true);
-            _needUpdateTips.DOScale(Vector3.one, .4f)
+            _needUdpateContent_Txt.text = errorStr;
+            _needUpdateTips_Trans.localScale = Vector3.zero;
+            _needUpdateTips_Trans.gameObject.SetActive(true);
+            _needUpdateTips_Trans.DOScale(Vector3.one, .4f)
                 .SetEase(Ease.OutBack);
         }
         public void HideUpdateTips()
         {
-            _shale_img.DOFade(0f, .25f);
-            _needUpdateTips.DOScale(Vector3.zero, .3f)
+            _shale_Img.DOFade(0f, .25f);
+            _needUpdateTips_Trans.DOScale(Vector3.zero, .3f)
                 .SetEase(Ease.InBack)
                 .OnComplete(() =>
                 {
-                    _needUpdateTips.gameObject.SetActive(false);
+                    _needUpdateTips_Trans.gameObject.SetActive(false);
                 });
         }
 
-        //½øÈëÓÎÏ·Âß¼­
+        //è¿›å…¥æ¸¸æˆé€»è¾‘
         private void StartGame()
         {
 
         }
         /// <summary>
-        /// Ô¶¶Ë×ÊÔ´µØÖ·²éÑ¯·şÎñÀà
+        /// è¿œç«¯èµ„æºåœ°å€æŸ¥è¯¢æœåŠ¡ç±»
         /// </summary>
         private class RemoteServices : IRemoteServices
         {
@@ -476,5 +443,4 @@ namespace HoopyGame
             }
         }
     }
-
 }

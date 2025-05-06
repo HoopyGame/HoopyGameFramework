@@ -575,7 +575,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 901446230890287934}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -690,7 +690,7 @@ GameObject:
   - component: {fileID: 901446230890287934}
   - component: {fileID: 901446230890287928}
   - component: {fileID: 901446230890287929}
-  - component: {fileID: 901446230890287931}
+  - component: {fileID: 5731127544652384938}
   m_Layer: 5
   m_Name: HotUpdatePanel
   m_TagString: Untagged
@@ -712,8 +712,8 @@ RectTransform:
   m_Children:
   - {fileID: 901446232253326268}
   - {fileID: 901446230402895284}
-  - {fileID: 901446230798415621}
   - {fileID: 901446231588304877}
+  - {fileID: 901446230798415621}
   - {fileID: 901446231461111895}
   - {fileID: 901446231327930156}
   m_Father: {fileID: 0}
@@ -762,7 +762,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &901446230890287931
+--- !u!114 &5731127544652384938
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -771,14 +771,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 901446230890287935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3d6facee98b52440a0d88b474f93309, type: 3}
+  m_Script: {fileID: 11500000, guid: 2350d9bfd83f34c4aa9df1bfa79e49fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playMode: 2
-  _packageName: MainPackage
+  _playMode: 0
   _cloudPackageVersion: 
-  defaultHostServer: http://127.0.0.1:8654/
-  fallbackHostServer: http://127.0.0.1:8654/
   downloadingMaxNum: 10
   failedTryAgain: 2
 --- !u!1 &901446231327930157
@@ -793,7 +790,7 @@ GameObject:
   - component: {fileID: 901446231327930158}
   - component: {fileID: 901446231327930159}
   m_Layer: 5
-  m_Name: ErrorTips
+  m_Name: ErrorTips_Trans
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1288,7 +1285,7 @@ GameObject:
   - component: {fileID: 901446231461111889}
   - component: {fileID: 901446231461111894}
   m_Layer: 5
-  m_Name: NeedUpdateTips
+  m_Name: NeedUpdateTips_Trans
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1462,7 +1459,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 901446230890287934}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1825,7 +1822,7 @@ GameObject:
   - component: {fileID: 901446232253326268}
   - component: {fileID: 901446232253326271}
   m_Layer: 5
-  m_Name: Progress_Slider
+  m_Name: Progress_Sld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

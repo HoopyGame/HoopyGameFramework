@@ -218,6 +218,9 @@ MonoBehaviour:
   - name: LoopScrollRect
     infomation: "\u65E0\u9650\u6EDA\u52A8\u5217\u8868"
     URL: https://github.com/qiankanglai/LoopScrollRect
+  - name: vkquality
+    infomation: VkQuality plugin for the Unity engine
+    URL: https://github.com/android/vkquality/tree/main
   Documents:
   - name: GameDevMind
     infomation: "\u6700\u5168\u9762\u7684\u6E38\u620F\u5F00\u53D1\u6280\u672F\u56FE\u8C31\u3002"

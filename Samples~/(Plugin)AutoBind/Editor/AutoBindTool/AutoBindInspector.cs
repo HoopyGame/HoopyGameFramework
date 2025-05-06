@@ -286,8 +286,8 @@ namespace HoopyGame.Editor
             StringBuilder sb2 = new StringBuilder();
             foreach (var data in _autoBindTool.bindData)
             {
-                sb1.AppendLine($"\t\tprivate {data.bindComponent.GetType().Name} {data.name};");
-                sb2.AppendLine($"\t\t\t{data.name} = transform.FindComponentFromChild<{data.bindComponent.GetType().Name}>(\"{GetComponentPath(data.bindComponent.transform)}\");");
+                sb1.AppendLine($"\t\tprivate {data.bindComponent.GetType().Name} _{char.ToLower(data.name[0]) + data.name.Substring(1)};");
+                sb2.AppendLine($"\t\t\t_{char.ToLower(data.name[0]) + data.name.Substring(1)} = transform.FindComponentFromChild<{data.bindComponent.GetType().Name}>(\"{GetComponentPath(data.bindComponent.transform)}\");");
             }
             tmpBindScript = tmpBindScript.Replace("#COMPONENTDATAFIELD#", sb1.ToString());
             tmpBindScript = tmpBindScript.Replace("#COMPONENTDATAS#", sb2.ToString());
@@ -361,6 +361,7 @@ namespace #NAMESPACE#{
 │　修改描述：
 └──────────────────────────────────────────────┘
 */
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
