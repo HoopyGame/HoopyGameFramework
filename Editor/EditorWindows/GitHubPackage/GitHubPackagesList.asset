@@ -296,6 +296,3 @@ MonoBehaviour:
   - name: Unity WebGL template
     infomation: A better default template for Unity WebGL
     URL: https://github.com/greggman/better-unity-webgl-template?tab=readme-ov-file
-  - name: fog-of-war
-    infomation: "\u6218\u4E89\u8FF7\u96FE"
-    URL: https://github.com/smilehao/fog-of-war
