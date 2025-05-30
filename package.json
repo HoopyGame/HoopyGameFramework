@@ -13,64 +13,19 @@
   ],
   "samples": [
     {
-      "displayName": "(Demo)Architecture",
-      "description": "Architecture",
-      "path": "Samples~/(Demo)Architecture"
+      "displayName": "Demos",
+      "description": "Simple Demo",
+      "path": "Samples~/Demos"
     },
     {
-      "displayName": "(Demo)NUR",
-      "description": "UI最久未使用算法的Demo",
-      "path": "Samples~/(Demo)NUR"
+      "displayName": "Plugins",
+      "description": "Plugins",
+      "path": "Samples~/Plugins"
     },
     {
-      "displayName": "(FolderTemplete)AssetsPackage",
-      "description": "预制的方便进行资源存储和打包的文件夹",
-      "path": "Samples~/(FolderTemplete)AssetsPackage"
+      "displayName": "AssetsPackage",
+      "description": "AssetsPackage",
+      "path": "Samples~/AssetsPackage"
     },
-    {
-      "displayName": "(Plugin)ClickEffect",
-      "description": "点击效果",
-      "path": "Samples~/(Plugin)ClickEffect"
-    },
-    {
-      "displayName": "(Plugin)CommandMode",
-      "description": "命令模式",
-      "path": "Samples~/(Plugin)CommandMode"
-    },
-    {
-      "displayName": "(Plugin)Examine",
-      "description": "考核功能，单选多选判断",
-      "path": "Samples~/(Plugin)Examine"
-    },
-    {
-      "displayName": "(Plugin)Gifts",
-      "description": "礼包抽奖，转盘，签到",
-      "path": "Samples~/(Plugin)Gifts"
-    },
-    {
-      "displayName": "(Plugin)Guide",
-      "description": "引导",
-      "path": "Samples~/(Plugin)Guide"
-    },
-    {
-      "displayName": "(Plugin)HotUpdate",
-      "description": "热更新资源",
-      "path": "Samples~/(Plugin)HotUpdate"
-    },
-    {
-      "displayName": "(Plugin)Redpoint",
-      "description": "红点",
-      "path": "Samples~/(Plugin)Redpoint"
-    },
-    {
-      "displayName": "(Templete)PlayerContorller",
-      "description": "简单的第一人称控制器",
-      "path": "Samples~/(Templete)PlayerContorller"
-    },
-    {
-      "displayName": "(Plugin)AutoBind",
-      "description": "自动绑定UI并生成脚本",
-      "path": "Samples~/(Plugin)AutoBind"
-    }
   ]
 }
