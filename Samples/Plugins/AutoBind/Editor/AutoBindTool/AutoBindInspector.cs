@@ -316,66 +316,7 @@ namespace HoopyGame.Editor
             AssetDatabase.Refresh();
         }
 
-        private const string notBindScript = @"/*
- | | | | ___   ___  _ __  _   _ / ___| __ _ _ __ ___   ___ 
- | |_| |/ _ \ / _ \| '_ \| | | | |  _ / _` | '_ ` _ \ / _ \
- |  _  | (_) | (_) | |_) | |_| | |_| | (_| | | | | | |  __/
- |_| |_|\___/ \___/| .__/ \__, |\____|\__,_|_| |_| |_|\___|
-                   |_|    |___/                            
-┌──────────────────────────────────────────────┐
-│　Copyright(C) 2025 by HoopyGameStudio
-│　描   述*：
-│　创 建 人*：Hoopy
-│　创建时间：#TIME#
-└──────────────────────────────────────────────┘
-┌──────────────────────────────────────────────┐
-│　修 改 人：
-│　修改描述：
-└──────────────────────────────────────────────┘
-*/
-using UnityEngine;
-
-namespace #NAMESPACE#{
-	public partial class #SCRIPTNAME# : MonoBehaviour
-	{
-        void Awake()
-        {
-            InitComponent();
-        }
-	}
-}";
-        private const string bindScript = @"/*
- | | | | ___   ___  _ __  _   _ / ___| __ _ _ __ ___   ___ 
- | |_| |/ _ \ / _ \| '_ \| | | | |  _ / _` | '_ ` _ \ / _ \
- |  _  | (_) | (_) | |_) | |_| | |_| | (_| | | | | | |  __/
- |_| |_|\___/ \___/| .__/ \__, |\____|\__,_|_| |_| |_|\___|
-                   |_|    |___/                            
-┌──────────────────────────────────────────────┐
-│　Copyright(C) 2025 by HoopyGameStudio
-│　描   述*：#SCRIPTNAME#的数据组件绑定类
-│　创 建 人*：Hoopy
-│　创建时间：#TIME#
-└──────────────────────────────────────────────┘
-┌──────────────────────────────────────────────┐
-│　修 改 人：
-│　修改描述：
-└──────────────────────────────────────────────┘
-*/
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-
-namespace #NAMESPACE#
-{
-	public partial class #SCRIPTNAME#
-	{
-#COMPONENTDATAFIELD#
-        private void InitComponent()
-        {
- #COMPONENTDATAS#
-        }
-	}
-}";
+        
 
 
         /// <summary>
