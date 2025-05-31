@@ -286,8 +286,8 @@ namespace HoopyGame.Editor
             StringBuilder sb2 = new StringBuilder();
             foreach (var data in _autoBindTool.bindData)
             {
-                sb1.AppendLine($"\t\tprivate {data.bindComponent.GetType().Name} {data.name};");
-                sb2.AppendLine($"\t\t\t{data.name} = transform.FindComponentFromChild<{data.bindComponent.GetType().Name}>(\"{GetComponentPath(data.bindComponent.transform)}\");");
+                sb1.AppendLine($"\t\tprivate {data.bindComponent.GetType().Name} _{char.ToLower(data.name[0]) + data.name.Substring(1)};");
+                sb2.AppendLine($"\t\t\t_{char.ToLower(data.name[0]) + data.name.Substring(1)} = transform.FindComponentFromChild<{data.bindComponent.GetType().Name}>(\"{GetComponentPath(data.bindComponent.transform)}\");");
             }
             tmpBindScript = tmpBindScript.Replace("#COMPONENTDATAFIELD#", sb1.ToString());
             tmpBindScript = tmpBindScript.Replace("#COMPONENTDATAS#", sb2.ToString());
@@ -316,65 +316,7 @@ namespace HoopyGame.Editor
             AssetDatabase.Refresh();
         }
 
-        private const string notBindScript = @"/*
- | | | | ___   ___  _ __  _   _ / ___| __ _ _ __ ___   ___ 
- | |_| |/ _ \ / _ \| '_ \| | | | |  _ / _` | '_ ` _ \ / _ \
- |  _  | (_) | (_) | |_) | |_| | |_| | (_| | | | | | |  __/
- |_| |_|\___/ \___/| .__/ \__, |\____|\__,_|_| |_| |_|\___|
-                   |_|    |___/                            
-┌──────────────────────────────────────────────┐
-│　Copyright(C) 2025 by HoopyGameStudio
-│　描   述*：
-│　创 建 人*：Hoopy
-│　创建时间：#TIME#
-└──────────────────────────────────────────────┘
-┌──────────────────────────────────────────────┐
-│　修 改 人：
-│　修改描述：
-└──────────────────────────────────────────────┘
-*/
-using UnityEngine;
-
-namespace #NAMESPACE#{
-	public partial class #SCRIPTNAME# : MonoBehaviour
-	{
-        void Awake()
-        {
-            InitComponent();
-        }
-	}
-}";
-        private const string bindScript = @"/*
- | | | | ___   ___  _ __  _   _ / ___| __ _ _ __ ___   ___ 
- | |_| |/ _ \ / _ \| '_ \| | | | |  _ / _` | '_ ` _ \ / _ \
- |  _  | (_) | (_) | |_) | |_| | |_| | (_| | | | | | |  __/
- |_| |_|\___/ \___/| .__/ \__, |\____|\__,_|_| |_| |_|\___|
-                   |_|    |___/                            
-┌──────────────────────────────────────────────┐
-│　Copyright(C) 2025 by HoopyGameStudio
-│　描   述*：#SCRIPTNAME#的数据组件绑定类
-│　创 建 人*：Hoopy
-│　创建时间：#TIME#
-└──────────────────────────────────────────────┘
-┌──────────────────────────────────────────────┐
-│　修 改 人：
-│　修改描述：
-└──────────────────────────────────────────────┘
-*/
-using UnityEngine.UI;
-using TMPro;
-
-namespace #NAMESPACE#
-{
-	public partial class #SCRIPTNAME#
-	{
-#COMPONENTDATAFIELD#
-        private void InitComponent()
-        {
- #COMPONENTDATAS#
-        }
-	}
-}";
+        
 
 
         /// <summary>
