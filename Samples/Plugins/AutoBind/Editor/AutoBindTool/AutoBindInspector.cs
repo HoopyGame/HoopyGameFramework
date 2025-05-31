@@ -45,6 +45,8 @@ namespace HoopyGame.Editor
         private string _bindRule;
         private int _bindRuleIndex;
 
+        private int _scriptTypeIndex = 0;
+
         private void OnEnable()
         {
             _autoBindTool = (AutoBindTool)target;
@@ -66,6 +68,8 @@ namespace HoopyGame.Editor
         {
             serializedObject.Update();
 
+            DrawScriptType();
+
             DrawRuleSelect();
 
             DrawSetting();
@@ -75,6 +79,16 @@ namespace HoopyGame.Editor
             DrawBindDatas();
 
             serializedObject.ApplyModifiedProperties();
+        }
+
+        /// <summary>
+        /// 绘制生成的脚本类型选择框
+        /// </summary>
+        private void DrawScriptType()
+        {
+            string[] _scriptTypeName = Enum.GetNames(typeof(AutoBindTool.ScriptType));
+
+            _scriptTypeIndex = EditorGUILayout.Popup("ScriptType", _scriptTypeIndex, _scriptTypeName);
         }
 
         /// <summary>
@@ -277,8 +291,30 @@ namespace HoopyGame.Editor
                 return;
             }
 
-            //脚本%%替换
-            var tmpBindScript = bindScript;
+            string notBindPart = "";
+            AutoBindTool.ScriptType scriptType = (AutoBindTool.ScriptType)_scriptTypeIndex;
+
+            switch (scriptType)
+            {
+                case AutoBindTool.ScriptType.Panel:
+                    notBindPart = CodeTemplete.UIPanelScriptNotBindScript;
+                    break;
+                case AutoBindTool.ScriptType.Popup:
+                    notBindPart = CodeTemplete.UIPopupScriptNotBindScript;
+                    break;
+                case AutoBindTool.ScriptType.PopupIncludeData:
+                    notBindPart = CodeTemplete.UIPopupIncludeDataScriptNotBindScript;
+                    break;
+                case AutoBindTool.ScriptType.Normal:
+                    notBindPart = CodeTemplete.NoramlScript;
+                    break;
+                
+            }
+
+
+
+            //绑定组件脚本%%替换
+            var tmpBindScript = CodeTemplete.UIBindComponentScirpt;
             tmpBindScript = tmpBindScript.Replace("#NAMESPACE#", _autoBindTool.NameSpace);
             tmpBindScript = tmpBindScript.Replace("#SCRIPTNAME#", className);
             tmpBindScript = tmpBindScript.Replace("#TIME#", DateTime.Now.ToString());
@@ -300,7 +336,7 @@ namespace HoopyGame.Editor
                 sw.Close();
             }
             //非绑定脚本的%%替换规则
-            var tmpNotBindScript = notBindScript;
+            var tmpNotBindScript = notBindPart;
             tmpNotBindScript = tmpNotBindScript.Replace("#NAMESPACE#", _autoBindTool.NameSpace);
             tmpNotBindScript = tmpNotBindScript.Replace("#SCRIPTNAME#", className);
             tmpNotBindScript = tmpNotBindScript.Replace("#TIME#", DateTime.Now.ToString());
@@ -316,7 +352,7 @@ namespace HoopyGame.Editor
             AssetDatabase.Refresh();
         }
 
-        
+
 
 
         /// <summary>

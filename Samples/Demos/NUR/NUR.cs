@@ -10,6 +10,7 @@ public class NUR : MonoBehaviour
     private void Awake()
     {
         //pqManager = new PQManager<PQBase>(5);
+
     }
     void Start()
     {
@@ -38,7 +39,7 @@ public class NUR : MonoBehaviour
         }
         if(Input.GetKeyUp(KeyCode.B))
         {
-            LSMgr.Instance.GetFromeGLS<UIMgr>().OpenUI("pop", UIType.Popup, new PanelOneData { name = "张三" }, () =>
+            LSMgr.Instance.GetFromeGLS<UIMgr>().OpenUI("pop", UIType.Popup, new PopupOnew.PopupOneData { name = "李四"}, () =>
             {
                 Debug.Log("关闭这个UI");
             });

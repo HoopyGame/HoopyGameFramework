@@ -28,6 +28,14 @@ namespace HoopyGame
     public class AutoBindTool : MonoBehaviour
     {
 #if UNITY_EDITOR
+        public enum ScriptType
+        {
+            Panel,
+            Popup,
+            PopupIncludeData,
+            Normal
+        }
+        
         private const string _defaultSavePath = "/Scripts/UI/";
 
         [SerializeField]

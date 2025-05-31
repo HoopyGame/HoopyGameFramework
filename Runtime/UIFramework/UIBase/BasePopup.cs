@@ -21,7 +21,7 @@ using UnityEngine.UI;
 
 namespace HoopyGame.UIF
 {
-    public abstract class BasePopup : BaseUI
+    public abstract class BasePopup: BaseUI
     {
         protected Button sureBtn;
         private Action _sureBtnEvent;
