@@ -30,8 +30,7 @@ namespace HoopyGame.Manager
             DebugUtils.Print("初始化对象池管理器...");
 
             _objectPool = new Dictionary<string, SinglePoolData>();
-            _allPoolDataParent = new GameObject(nameof(ObjectPoolMgr)).transform;
-            _allPoolDataParent.SetParent(LSMgr.Instance.transform);
+            _allPoolDataParent = new GameObject("ObjectPools").transform;
         }
         /// <summary>
         /// 从池子内拿取

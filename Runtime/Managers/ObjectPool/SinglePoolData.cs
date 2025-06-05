@@ -25,7 +25,7 @@ public class SinglePoolData
     private string _fullPath;
     public SinglePoolData(Transform allPoolParent, string fullPath)
     {
-        _parent = new GameObject(fullPath).transform;
+        _parent = new GameObject(fullPath+"s").transform;
         _parent.SetParent(allPoolParent);
         _fullPath = fullPath;
 
@@ -39,6 +39,7 @@ public class SinglePoolData
     {
         GameObject item = GameObject.Instantiate(Resources.Load<GameObject>(_fullPath));
         item.name = _fullPath;
+        item.transform.SetParent(_parent);
         return item;
     }
     /// <summary>
